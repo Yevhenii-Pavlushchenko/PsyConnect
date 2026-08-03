@@ -1,0 +1,145 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  max-width: 360px;
+  padding: 24px;
+}
+.locationWraper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.inputWraper {
+  position: relative;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+.input {
+  padding: 16px 20px 16px 48px;
+  border-radius: 20px;
+  width: 312px;
+
+  background-color: var(--main-white);
+  border: none;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+input:focus {
+  color: var(--main-black);
+}
+
+.iconLocation {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  pointer-events: none;
+}
+
+/*Filters*/
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+.filterTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--main-black);
+}
+.filterCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.categoryName {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+/*  Кастомный чекбокс */
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.radioInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.customRadio {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconEmpty {
+  color: var(--text);
+  transition: color var(--transition);
+}
+.iconDot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--button-hover);
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--transition),
+    transform var(--transition);
+  pointer-events: none;
+}
+
+.radioInput:checked + .customRadio .iconDot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.radioText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--main-black);
+}
+
+/* Блок кнопок */
+
+.btnWraper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

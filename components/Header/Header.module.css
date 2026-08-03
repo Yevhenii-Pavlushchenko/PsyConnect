@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 450px;
+  padding: 24px 64px;
+  background-color: var(--white);
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  outline: none;
+}
+
+.navigation {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigationLink {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  color: var(--main-black);
+  transition: var(--transition);
+}
+
+.active {
+  color: var(--button);
+}
