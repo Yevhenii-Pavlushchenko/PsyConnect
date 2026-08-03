@@ -5,7 +5,7 @@ html {
 }
 
 body{
-font-family: var(--font-inter-sans), sans-serif;
+    font-family: var(--font-manrope), sans-serif;
     margin: 0 auto;
     padding: 0;
     max-width: 1440px;
@@ -46,5 +46,5 @@ ul{
     --error: #e44848;
     
 
-    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);;
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
