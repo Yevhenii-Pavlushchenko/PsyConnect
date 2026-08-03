@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import css from "./page.module.css";
 
-import Button from "@/components/Button/Button";
+import Button from "@/components/ui/Button/Button";
 
 export default function Home() {
   const router = useRouter()

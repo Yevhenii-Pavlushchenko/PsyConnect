@@ -5,8 +5,8 @@ import "modern-normalize/modern-normalize.css";
 
 import type { Metadata } from "next";
 
-import TanstackProvider from "@/components/TanstackProvider/TanstackProvider";
-import Header from "@/components/Header/Header";
+import TanstackProvider from "@/components/shared/TanstackProvider/TanstackProvider";
+import Header from "@/components/layout/Header/Header";
 
 const manrope = Manrope({
   variable: "--font-manrope",
