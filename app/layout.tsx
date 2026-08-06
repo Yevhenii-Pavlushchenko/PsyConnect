@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 
 import TanstackProvider from "@/components/shared/TanstackProvider/TanstackProvider";
 import Header from "@/components/layout/Header/Header";
+import Footer from "@/components/layout/Footer/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Header />
           {children}
         </TanstackProvider>
+         <Footer />
       </body>
     </html>
   );
