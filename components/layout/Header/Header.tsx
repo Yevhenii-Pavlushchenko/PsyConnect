@@ -4,20 +4,22 @@ import css from "./Header.module.css";
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Header() {
   const pathname = usePathname();
   return (
     <header className={css.header}>
-      <Link className={css.headerLogo} href="/">
-        <Image
-          src="/logo-company.png"
-          alt="Logo company"
-          width={136}
-          height={16}
-        />
-      </Link>
+        <Link href="/home">
+        <div className={css.HeaderLogoWrapper}>
+          <span>PsyConnect</span>
+            <div className={css.HeaderLogoIcon}>
+              <svg width="24" height="24">
+                <use href="/sprite.svg#icon-logo"></use>
+              </svg>
+            </div>
+            
+          </div>
+        </Link>
       <nav aria-label="Main Navigation">
         <ul className={css.navigation}>
           <li className={css.navigationItem}>
@@ -28,10 +30,10 @@ export default function Header() {
           <li className={css.navigationItem}>
             <Link
               className={`${css.navigationLink}
-               ${pathname === "/catalog" ? css.active : ""}`}
-              href="/catalog"
+               ${pathname === "/psychologists" ? css.active : ""}`}
+              href="/psychologists"
             >
-              Catalog
+              Psychologists
             </Link>
           </li>
         </ul>

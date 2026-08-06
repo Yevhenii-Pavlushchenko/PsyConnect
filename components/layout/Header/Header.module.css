@@ -6,11 +6,17 @@
   background-color: var(--white);
 }
 
-.headerLogo {
+.HeaderLogoWrapper {
   display: flex;
   align-items: center;
-  text-decoration: none;
-  outline: none;
+  gap: 8px;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+}
+.HeaderLogoIcon{
+  fill: currentColor;
 }
 
 .navigation {

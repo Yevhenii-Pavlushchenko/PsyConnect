@@ -6,32 +6,52 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    max-width: 1200px;
+    /* Рекомендуется ограничить ширину контейнера */
+    margin: 0 auto;
 }
 
 .statItem {
     display: flex;
     flex-direction: column;
-    padding-left: 0;
+    /* Уменьшили гигантские отступы, чтобы контент не ломался */
+    padding: 0 40px 20px;
     gap: 8px;
     flex: 1;
+    position: relative;
+    /* Необходимо для позиционирования ::before */
 }
 
+/* Создаем разделительную линию перед 2-м и 3-м элементами */
+.statsContainer .statItem:nth-child(2)::before,
+.statsContainer .statItem:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 68px;
+    background-color: var(--background-third-color);
+}
+
+/* Первый элемент */
 .statsContainer .statItem:nth-child(1) {
     align-items: center;
     text-align: center;
 }
 
-.statsContainer .statItem:nth-child(3) {
+.statsContainer .statItem:nth-child(2) {
     align-items: flex-start;
     text-align: left;
     padding-left: 16px;
 }
 
-.statsContainer .statItem:nth-child(5) {
+.statsContainer .statItem:nth-child(3) {
     align-items: start;
     text-align: center;
     padding-left: 16px;
-    .number {
+    .number{
         padding-left: 46px;
     }
 }
@@ -51,10 +71,4 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--accent-color);
-}
-
-.divider {
-    width: 1px;
-    height: 68px;
-    background-color: var(--background-third-color);
 }
