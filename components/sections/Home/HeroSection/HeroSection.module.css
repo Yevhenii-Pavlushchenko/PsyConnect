@@ -1,0 +1,128 @@
+.hero {
+    background-color: var(--background-color);
+    padding: 60px 0 0px 0;
+    margin-bottom: 100px;
+   
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.contentColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.taglineWrapper{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--accent-color);
+    background-color: var(--background-color);
+    border: 1px solid rgba(191, 201, 193, 0.3);
+    border-radius: 32px;
+    padding: 8px 16px;
+
+}
+.icon-tag-line{
+
+}
+.taglineText {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.33333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--black-color);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--grey-color);
+    padding-bottom: 32px;
+    max-width: 480px;
+}
+/* СТИЛИ ДЛЯ ПРАВОЙ СЕКЦИИ С ФОТО */
+.visualColumn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imageWrapper {
+    position: relative;
+    
+}
+
+.heroImage {
+    object-fit: cover;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.06);
+    border-radius: 32px;
+}
+
+/* Общие стили для "летающих" бейджей */
+.floatingBadge {
+    position: absolute;
+    box-shadow: 0 12px 24px 0 rgba(45, 106, 79, 0.1);
+    background: #f7faf8;
+    padding: 16px 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--black-color);
+}
+
+.badgeLeft {
+    top: 24px;
+    left: 24px;
+}
+
+.badgeRight {
+    bottom: 24px;
+    right: 24px;
+}
+
+.iconShield {
+    background-color: rgba(160, 244, 200, 0.3);
+    color: var(--accent-color);
+    border-radius: 50%;
+    width: 32px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconStar {
+    background-color:rgba(160, 244, 200, 0.3);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badgeText {
+    display: flex;
+    /* flex-direction: column; */
+}

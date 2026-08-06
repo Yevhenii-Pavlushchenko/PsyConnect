@@ -41,6 +41,8 @@ ul{
     --black-color: #181c1c;
     --white-color: #fff;
     --accent-color: #0d6c4a;
+    --accent-hover-color: #0c4a34;
+    --accent-active-color: #0a3425;
     --accent-placeholder-color: #a0f4c8;
     --error-color: #ba1a1a;
     --yellow-color: #EAB308;

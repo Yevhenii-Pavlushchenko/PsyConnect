@@ -1,25 +1,12 @@
-"use client"
-
-import { useRouter } from "next/navigation";
+import HeroSection from "@/components/sections/Home/HeroSection/HeroSection";
+import StatsBar from "@/components/sections/Home/StatsBar/StatsBar";
 import css from "./page.module.css";
 
-import Button from "@/components/ui/Button/Button";
-
-export default function Home() {
-  const router = useRouter()
+export default function HomePage() {
   return (
-    <section className={css.hero}>
-      <div className={css.container}>
-        <h1 className={css.title}>Campers of your dreams</h1>
-      <p className={ css.descr}>You can find everything you want in our catalog</p>
-      <Button
-        text="View Now"
-        color='green' width={173}
-        onClick={()=>router.push('/catalog')}
-      ></Button>
-      </div>
-      
-      
-   </section>
+    <main className={css.container}>
+      <HeroSection />
+      <StatsBar />
+    </main>
   );
 }
