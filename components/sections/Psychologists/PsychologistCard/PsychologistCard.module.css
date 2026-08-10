@@ -1,0 +1,281 @@
+.card {
+    display: flex;
+    gap: 24px;
+    background-color: var(--white-color);
+    border-radius: 24px;
+    padding: 24px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+}
+
+.avatarContainer {
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(13, 108, 74, 0.2);
+    /* Легкий акцентний колір навколо аватара */
+    border-radius: 30px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.avatar {
+    border-radius: 26px;
+    object-fit: cover;
+}
+
+.badgeFree {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(13, 108, 74, 0.1);
+    color: var(--accent-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.badgeFree svg {
+    fill: none;
+    stroke: currentColor;
+}
+
+.rightColumn {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 16px;
+}
+
+.categoryLabel {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--black-color);
+    margin-top: 4px;
+}
+
+.metaGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    color: rgba(24, 28, 28, 0.7);
+}
+
+.metaItem svg {
+    fill: none;
+    stroke: var(--black-color);
+}
+
+.starIcon {
+    fill: var(--yellow-color) !important;
+    stroke: var(--yellow-color) !important;
+}
+
+.favoriteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--black-color);
+    fill: none;
+    stroke: currentColor;
+    transition: var(--transition);
+}
+
+.favoriteBtn:hover {
+    transform: scale(1.1);
+}
+
+.isFavoriteActive {
+    color: var(--accent-color);
+    fill: var(--accent-color);
+}
+
+.specializationTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.specTag {
+    background-color: var(--background-color);
+    color: var(--black-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.aboutText {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 16px;
+}
+
+.conditionsTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.condTag {
+    background: none;
+    border: 1px solid rgba(24, 28, 28, 0.1);
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* СТИЛІ ДЛЯ РОЗГОРНУТОГО СТАНУ */
+.expandedArea {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-top: 1px solid rgba(24, 28, 28, 0.05);
+    padding-top: 24px;
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black-color);
+    margin-bottom: 12px;
+}
+
+.approachTags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.approachTag {
+    background-color: var(--background-second-color);
+    color: var(--black-color);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.reviewsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    list-style: none;
+}
+
+.reviewItem {
+    background-color: rgba(241, 244, 242, 0.4);
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.reviewerHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.reviewerAvatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent-placeholder-color);
+    color: var(--accent-color);
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewerName {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black-color);
+}
+
+.reviewerRating {
+    display: flex;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.reviewComment {
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+/* ФУТЕР КАРТКИ */
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(24, 28, 28, 0.05);
+    padding-top: 20px;
+    margin-top: auto;
+}
+
+.priceBlock {
+    display: flex;
+    align-items: baseline;
+}
+
+.priceValue {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--black-color);
+}
+
+.priceLabel {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.actionsBlock {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}

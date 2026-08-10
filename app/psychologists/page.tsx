@@ -33,7 +33,7 @@ export default function PsychologistsPage({ searchParams }: PageProps) {
         <FilterBar currentFilters={filters} />
 
         {/* Список карток */}
-        {/* <PsychologistsList filters={filters} /> */}
+        <PsychologistsList filters={filters} />
       </div>
     </div>
   );
