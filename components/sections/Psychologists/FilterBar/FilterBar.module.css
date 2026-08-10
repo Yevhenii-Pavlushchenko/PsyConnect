@@ -1,0 +1,42 @@
+.filterBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+    width: 100%;
+
+    /* Твої нові стилі для плашки фільтрів */
+    background: #fff;
+    border: 1px solid rgba(191, 201, 193, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.filtersGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filterTitleBlock {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 8px;
+}
+
+.filterIcon {
+    fill: none;
+    stroke: var(--black-color);
+}
+
+.filterLabel {
+    font-family: var(--font-manrope), sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--black-color);
+}

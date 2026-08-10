@@ -4,36 +4,49 @@ import css from "./Button.module.css";
 import Link from "next/link";
 
 export type ButtonColor = "green" | "white";
-export type ButtonSize = "large" | "small"; // Добавили новый тип
+export type ButtonSize = "large" | "small" | "zero"; // 🟢 Додали zero
 
 interface ButtonProps {
   text: string;
   color: ButtonColor;
   width: number;
-  size?: ButtonSize; // Сделали необязательным (по умолчанию будет large)
+  size?: ButtonSize;
   onClick?: () => void;
   className?: string;
   icon?: string;
   type?: "button" | "submit" | "reset";
   href?: string;
   target?: string;
+  disabled?: boolean;
+  noBorder?: boolean;
+  fontSize?: number; // 🟢 НАШ НОВИЙ ПРОП ДЛЯ РОЗМІРУ ШРИФТУ
 }
 
 export default function Button({
   text,
   color,
   width,
-  size = "large", // Значение по умолчанию
+  size = "large",
   onClick,
   className,
   icon,
   type,
   href,
   target,
+  disabled,
+  noBorder = false,
+  fontSize, // 🟢 Деструктуризуємо
 }: ButtonProps) {
-  // Добавляем класс размера в общую строку классов
-  const btnClassName = `${css.btn} ${css[color]} ${css[size]} ${className || ""}`;
-  const btnStyle = { width: `${width}px` };
+  
+  const btnClassName = `${css.btn} ${css[color]} ${css[size]} ${
+    noBorder ? css.noBorder : ""
+  } ${className || ""}`;
+  
+  // 🟢 Додаємо fontSize в інлайнові стилі, якщо він переданий
+  const btnStyle = { 
+    width: `${width}px`,
+    ...(fontSize && { fontSize: `${fontSize}px` })
+  };
 
   const content = (
     <>
@@ -65,6 +78,7 @@ export default function Button({
       onClick={onClick}
       className={btnClassName}
       style={btnStyle}
+      disabled={disabled}
     >
       {content}
     </button>

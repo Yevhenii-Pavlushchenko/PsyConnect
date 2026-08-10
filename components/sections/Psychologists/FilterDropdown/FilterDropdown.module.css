@@ -1,0 +1,76 @@
+.dropdownContainer {
+    position: relative;
+    width: 300px;
+    /* 🟢 Нова фіксована ширина для всіх інпутів */
+}
+
+.dropdownButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+
+    /* 🟢 Нові стилі фону та меж */
+    background: var(--background-color);
+    border: 1px solid transparent;
+    border-radius: 12px;
+
+    font-family: var(--font-manrope), sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--black-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dropdownButton:hover,
+.activeButton {
+    border-color: var(--accent-color);
+    background-color: var(--background-color);
+    /* Робимо білим при ховері/відкритті для гарного ефекту */
+}
+
+.arrowIcon {
+    fill: none;
+    stroke: var(--black-color);
+    transition: transform var(--transition);
+}
+
+.arrowUp {
+    transform: rotate(180deg);
+}
+
+.dropdownList {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 8px 0;
+    list-style: none;
+    margin: 0;
+    z-index: 50;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.dropdownItem {
+    padding: 10px 18px;
+    font-size: 16px;
+    color: rgba(24, 28, 28, 0.6);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dropdownItem:hover {
+    background-color: var(--background-color);
+    color: var(--black-color);
+}
+
+.selectedItem {
+    color: var(--accent-color);
+    font-weight: 600;
+}

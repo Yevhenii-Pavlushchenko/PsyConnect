@@ -1,0 +1,94 @@
+.skeletonCard {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    background-color: var(--white-color);
+    border-radius: 24px;
+    max-width: 1184px;
+    width: 100%;
+}
+
+.avatarBlock {
+    width: 120px;
+    height: 120px;
+    background-color: var(--background-second-color);
+    border-radius: 30px;
+    flex-shrink: 0;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.contentBlock {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.headerLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleLine {
+    width: 250px;
+    height: 28px;
+    background-color: var(--background-second-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.metaLine {
+    width: 300px;
+    height: 20px;
+    background-color: var(--background-second-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.tagsLine {
+    width: 80%;
+    height: 24px;
+    background-color: var(--background-second-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.textLine,
+.textLineShort {
+    height: 16px;
+    background-color: var(--background-second-color);
+    border-radius: 6px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.textLine {
+    width: 100%;
+}
+
+.textLineShort {
+    width: 60%;
+}
+
+.actionsLine {
+    width: 240px;
+    height: 48px;
+    background-color: var(--background-second-color);
+    border-radius: 30px;
+    margin-top: 8px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
