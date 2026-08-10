@@ -1,0 +1,138 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--black-color);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fieldGroup {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(24, 28, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    gap: 14px;
+    transition: var(--transition);
+    background-color: transparent;
+}
+
+.fieldGroup:focus-within {
+    border-color: var(--accent-color);
+}
+
+.inputIcon {
+    fill: none;
+    stroke: rgba(24, 28, 28, 0.5);
+    transition: var(--transition);
+}
+
+.fieldGroup:focus-within .inputIcon {
+    stroke: var(--accent-color);
+}
+
+.input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--black-color);
+    background: transparent;
+}
+
+.input::placeholder {
+    color: var(--black-color);
+    opacity: 0.6;
+}
+
+.eyeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    fill: none;
+    stroke: var(--black-color);
+}
+
+/* Стили при ошибке валидации */
+.inputError {
+    border-color: var(--error-color) !important;
+}
+
+.inputError .inputIcon {
+    stroke: var(--error-color) !important;
+}
+
+.errorText {
+    font-size: 12px;
+    color: var(--error-color);
+    padding-left: 4px;
+}
+
+/* Кнопка отправки */
+.submitButton {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 30px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 22px;
+    transition: var(--transition);
+}
+
+.submitButton:hover {
+    background-color: var(--accent-hover-color);
+}
+
+.submitButton:disabled {
+    background-color: var(--background-third-color);
+    color: var(--text-color);
+    cursor: not-allowed;
+}
+
+/* Переключалка модалок внизу */
+.switchFormText {
+    font-size: 14px;
+    text-align: center;
+    color: var(--text-color);
+    margin-top: 18px;
+}
+
+.switchLink {
+    color: var(--accent-color);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.switchLink:hover {
+    color: var(--accent-hover-color);
+}

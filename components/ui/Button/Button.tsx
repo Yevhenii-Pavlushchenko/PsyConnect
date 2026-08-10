@@ -4,11 +4,13 @@ import css from "./Button.module.css";
 import Link from "next/link";
 
 export type ButtonColor = "green" | "white";
+export type ButtonSize = "large" | "small"; // Добавили новый тип
 
 interface ButtonProps {
   text: string;
   color: ButtonColor;
   width: number;
+  size?: ButtonSize; // Сделали необязательным (по умолчанию будет large)
   onClick?: () => void;
   className?: string;
   icon?: string;
@@ -21,6 +23,7 @@ export default function Button({
   text,
   color,
   width,
+  size = "large", // Значение по умолчанию
   onClick,
   className,
   icon,
@@ -28,7 +31,8 @@ export default function Button({
   href,
   target,
 }: ButtonProps) {
-  const btnClassName = `${css.btn} ${css[color]} ${className || ""}`;
+  // Добавляем класс размера в общую строку классов
+  const btnClassName = `${css.btn} ${css[color]} ${css[size]} ${className || ""}`;
   const btnStyle = { width: `${width}px` };
 
   const content = (

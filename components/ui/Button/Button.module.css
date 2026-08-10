@@ -12,41 +12,55 @@
     line-height: 1.5;
 
     transition: var(--transition);
-
-    padding: 14px 0px;
     border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
+    box-sizing: border-box;
 }
-.green{
+
+.large {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.small {
+    padding-top: 8.5px;
+    padding-bottom: 9.5px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.green {
     background-color: var(--accent-color);
     color: var(--white-color);
     border: none;
 }
 
-.green:hover{
+.green:hover {
     background-color: var(--accent-hover-color);
 }
+
 .green:active {
     background-color: var(--accent-active-color);
 }
 
-.white{
-    background-color: var(--main-white);
-        color: var(--main-black);
-        border: 1px solid var(--gray-light);
+.white {
+    background-color: var(--white-color);
+    color: var(--black-color);
+    border: 1px solid #bfc9c1;
 }
-
-
+.white:hover {
+    border: 1px solid var(--accent-hover-color);
+}
 .white:active {
-    border: 1px solid var(--button-hover);
+    border: 1px solid var(--accent-active-color);
 }
+
 .btn svg {
     width: 16px;
     height: 16px;
     fill: currentColor;
     stroke: currentColor;
-}   
-
-
-
+}
