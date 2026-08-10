@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./LoginForm.module.css";
-import { useAuthStore } from "../../../app/store/authStore";
+import { useAuthStore, useModalStore } from "../../../app/store/appStore";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 
@@ -20,7 +20,8 @@ const loginSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser, closeLoginModal, openRegisterModal } = useAuthStore();
+  const { login } = useAuthStore();
+  const { closeModal, openModal } = useModalStore();
 
   return (
     <div className={css.formContainer}>
@@ -36,17 +37,23 @@ export default function LoginForm() {
           try {
             // Типизируем ответ для логина
             const response = await api.post<{
-              name: string;
-              email: string;
-              token: string;
-            }>("/auth/login", values);
+              token?: string;
+              user: {
+                name: string;
+                email: string;
+              };
+            }>("/api/auth/login", values);
+            console.log("Бекенд повернув ось це:", response.data);
             toast.success("Welcome back!");
 
-            loginUser(
-              { name: response.data.name, email: response.data.email },
-              response.data.token,
+            login(
+              {
+                name: response.data.user.name,
+                email: response.data.user.email,
+              },
+              response.data.token || "", 
             );
-            closeLoginModal();
+            closeModal();
           } catch (error: unknown) {
             if (error instanceof AxiosError) {
               toast.error(
@@ -129,8 +136,9 @@ export default function LoginForm() {
       </Formik>
 
       <p className={css.switchFormText}>
-       Don&apos;t have an account?{" "}
-        <span className={css.switchLink} onClick={openRegisterModal}>
+        Don&apos;t have an account?{" "}
+        {/* 🟢 Тепер тут правильний виклик методу зі спільного стору */}
+        <span className={css.switchLink} onClick={() => openModal("register")}>
           Sign Up
         </span>
       </p>

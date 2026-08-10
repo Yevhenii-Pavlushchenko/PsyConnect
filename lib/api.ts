@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://psy-connect.b.goit.study/api-docs', 
+  baseURL: 'https://psy-connect.b.goit.study', 
+   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -23,5 +24,6 @@ api.interceptors.request.use(
 // Функция для тестового запроса по ID
 export const getPsychologistById = async (id: string) => {
   const response = await api.get(`/psychologists/${id}`);
+  console.log('Бекенд повернув ось це:', response.data); // Логируем ответ для проверки
   return response.data;
 };

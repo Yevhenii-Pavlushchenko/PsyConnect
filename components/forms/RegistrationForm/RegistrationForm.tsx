@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import css from "./RegistrationForm.module.css";
-import { useAuthStore } from "../../../app/store/authStore";
+import { useAuthStore, useModalStore } from "../../../app/store/appStore";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 
@@ -21,7 +21,8 @@ const registerSchema = Yup.object().shape({
 
 export default function RegistrationForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const { loginUser, closeRegisterModal, openLoginModal } = useAuthStore();
+  const { login } = useAuthStore();
+  const { closeModal, openModal } = useModalStore();
 
   return (
     <div className={css.formContainer}>
@@ -35,22 +36,31 @@ export default function RegistrationForm() {
         validationSchema={registerSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // Явно указываем тип ожидаемого ответа от бэкенда <{ name: string; email: string; token: string }>
             const response = await api.post<{
-              name: string;
-              email: string;
-              token: string;
-            }>("/auth/register", values);
+             token?: string;
+              user: {
+                name: string;
+                email: string;
+              };
+            }>("/api/auth/register", values);
+            
+            // 🔴 ВИВОДИМО В КОНСОЛЬ, ЩОБ ПОБАЧИТИ СТРУКТУРУ ВІДПОВІДІ БЕКЕНДУ:
+            console.log("Бекенд реєстрації повернув:", response.data);
+
             toast.success("Account created successfully!");
 
-            // Теперь TypeScript точно знает, что там есть name, email и token
-            loginUser(
-              { name: response.data.name, email: response.data.email },
-              response.data.token,
+            // 🟢 Викликаємо правильний метод `login` з нового стору
+            login(
+              { 
+                name: response.data.user.name, 
+                email: response.data.user.email 
+              },
+              response.data.token || ""
             );
-            closeRegisterModal();
+            
+            // 🟢 Закриваємо модалку універсальним методом
+            closeModal();
           } catch (error: unknown) {
-            // Безопасно обрабатываем ошибку Axios без использования any
             if (error instanceof AxiosError) {
               toast.error(
                 error.response?.data?.message || "Registration failed",
@@ -155,7 +165,8 @@ export default function RegistrationForm() {
 
       <p className={css.switchFormText}>
         Already have an account?{" "}
-        <span className={css.switchLink} onClick={openLoginModal}>
+        {/* 🟢 Викликаємо `openModal` замість застарілого `openLoginModal` */}
+        <span className={css.switchLink} onClick={() => openModal('login')}>
           Log In
         </span>
       </p>

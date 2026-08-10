@@ -3,44 +3,40 @@
 import css from "./Header.module.css";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useAuthStore } from "../../../app/store/authStore"; 
+import { useAuthStore, useModalStore, useFavoritesStore } from "../../../app/store/appStore";
+
 import Modal from "../../ui/Modal/Modal";
 import LoginForm from "@/components/forms/LoginForm/LoginForm";
 import RegistrationForm from "@/components/forms/RegistrationForm/RegistrationForm";
 import toast from "react-hot-toast";
 import { api } from "@/lib/api"; 
-import Button from "../../ui/Button/Button"; // Підправ шлях до твоєї папки Button якщо він інший
+import Button from "../../ui/Button/Button"; 
 
 export default function Header() {
   const pathname = usePathname();
   
-  const { 
-    isLoggedIn, 
-    user, 
-    logoutUser,
-    isLoginModalOpen, 
-    isRegisterModalOpen,
-    openLoginModal, 
-    closeLoginModal, 
-    openRegisterModal, 
-    closeRegisterModal 
-  } = useAuthStore();
+  // 🟢 Беремо правильні методи з нашого оновленого useAuthStore
+  const { isLoggedIn, user, logout } = useAuthStore();
+  
+  const { activeModal, openModal, closeModal } = useModalStore();
 
-  const handleLogout = async () => {
+   const handleLogout = async () => {
     try {
-      await api.post("/auth/logout"); 
+      await api.post("/api/auth/logout"); 
+      toast.success("Logged out successfully");
     } catch (error) {
       console.error("Logout error", error);
+      toast.error("Session expired, logging out locally");
     } finally {
-      logoutUser();
-      toast.success("Logged out successfully");
+      logout();
+      useFavoritesStore.getState().setFavorites([]);
     }
   };
 
   return (
     <>
       <header className={css.header}>
-        {/* Логотип залишається через Link, бо це не кнопка */}
+        {/* Логотип */}
         <Link href="/">
           <div className={css.HeaderLogoWrapper}>
             <span>PsyConnect</span>
@@ -86,17 +82,17 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Блок Авторизації з новими кастомними кнопками */}
+        {/* Блок Авторизації */}
         <div className={css.authBlock}>
           {isLoggedIn ? (
             <div className={css.authorizedMenu}>
               <div className={css.userInfo}>
+                <span className={css.userName}>Welcome, {user?.name || "User"}</span>
                 <div className={css.userAvatar}>
                   <svg width="20" height="20">
                     <use href="/sprite.svg#icon-user"></use>
                   </svg>
                 </div>
-                <span className={css.userName}>Welcome, {user?.name || "User"}</span>
               </div>
               <Button 
                 text="Log Out" 
@@ -111,27 +107,27 @@ export default function Header() {
                 text="Log In" 
                 color="white" 
                 width={110} 
-                  onClick={openLoginModal} 
-                  size="small"
+                onClick={() => openModal('login')} /* 🟢 Відкриваємо модалку логіну */
+                size="small"
               />
               <Button 
                 text="Sign Up" 
                 color="green" 
                 width={130} 
-                  onClick={openRegisterModal} 
-                  size="small"
+                onClick={() => openModal('register')} /* 🟢 Відкриваємо модалку реєстрації */
+                size="small"
               />
             </div>
           )}
         </div>
       </header>
 
-      {/* Модальні вікна */}
-      <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+      {/* 🟢 Тепер модалки рендеряться на основі єдиного стейту activeModal */}
+      <Modal isOpen={activeModal === 'login'} onClose={closeModal}>
         <LoginForm />
       </Modal>
 
-      <Modal isOpen={isRegisterModalOpen} onClose={closeRegisterModal}>
+      <Modal isOpen={activeModal === 'register'} onClose={closeModal}>
         <RegistrationForm />
       </Modal>
     </>

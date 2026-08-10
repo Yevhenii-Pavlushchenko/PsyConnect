@@ -13,21 +13,34 @@ interface AuthState {
   logout: () => void;
 }
 
+// Безпечне зчитування юзера з localStorage при старті додатку
+const getStoredUser = (): User | null => {
+  if (typeof window === "undefined") return null;
+  try {
+    const stored = localStorage.getItem("user_data");
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return null;
+  }
+};
+
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  isLoggedIn: false, 
+  user: getStoredUser(), 
+  isLoggedIn: typeof window !== "undefined" && !!localStorage.getItem("access_token"), 
+  
   login: (user, token) => {
     localStorage.setItem('access_token', token);
+    localStorage.setItem('user_data', JSON.stringify(user)); // Зберігаємо об'єкт юзера
     set({ user, isLoggedIn: true });
   },
   logout: () => {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_data'); // Очищаємо при логауті
     set({ user: null, isLoggedIn: false });
   },
 }));
 
 // --- 2. СТОР МОДАЛОК ТА ТОСТІВ ---
-// Спершу переконайся, що PsychologistData оголошено саме так, оскільки бекенд повертає _id
 interface PsychologistData {
   _id: string;
   name: string;
@@ -40,7 +53,6 @@ interface ModalState {
   activeModal: ModalType;
   modalData: PsychologistData | null;
   isToastOpen: boolean;
-  // Додаємо | null у сигнатуру методу для аргументу data
   openModal: (type: ModalType, data?: PsychologistData | null) => void;
   closeModal: () => void;
   openAuthToast: () => void;
@@ -51,7 +63,6 @@ export const useModalStore = create<ModalState>((set) => ({
   activeModal: null,
   modalData: null,
   isToastOpen: false,
-  // Тепер TypeScript не буде сваритися на data = null
   openModal: (type, data = null) => 
     set({ activeModal: type, modalData: data, isToastOpen: false }),
   closeModal: () => 
@@ -62,7 +73,7 @@ export const useModalStore = create<ModalState>((set) => ({
     set({ isToastOpen: false }),
 }));
 
-
+// --- 3. СТОР УЛЮБЛЕНОГО ---
 interface FavoritesState {
   ids: string[];
   setFavorites: (ids: string[]) => void;
