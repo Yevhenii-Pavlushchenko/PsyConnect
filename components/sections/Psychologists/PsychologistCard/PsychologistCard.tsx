@@ -86,8 +86,8 @@ export default function PsychologistCard({ psychologist }: PsychologistCardProps
           <Image
             src={psychologist.avatar_url}
             alt={psychologist.name}
-            width={44}
-            height={44}
+            width={80}
+            height={80}
             className={css.avatar}
           />
         </div>

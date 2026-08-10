@@ -223,14 +223,17 @@
     margin-bottom: 6px;
 }
 
+.avatarContainer{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
 .reviewerAvatar {
-    width: 32px;
-    height: 32px;
+    width: 80px;
+    height: 80px;
     background-color: var(--accent-placeholder-color);
     color: var(--accent-color);
-    font-weight: 700;
-    font-size: 13px;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;

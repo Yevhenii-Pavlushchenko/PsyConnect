@@ -9,7 +9,6 @@ import SkeletonCard from "../SkeletonCard/SkeletonCard";
 import EmptyState from "../EmptyState/EmptyState";
 import Button from "@/components/ui/Button/Button";
 import PsychologistCard from "../PsychologistCard/PsychologistCard";
-// import { error } from "console";
 
 // Интерфейс данных одного психолога по ТЗ
 export interface Psychologist {
@@ -49,7 +48,7 @@ export default function PsychologistsList({ filters }: PsychologistsListProps) {
   }
 
   const fetchPsychologists = async ({ pageParam = 1 }) => {
-    const requestParams: Record<string, any> = {
+    const requestParams: Record<string, unknown> = {
       page: pageParam,
       limit: 4,
     };
@@ -111,16 +110,7 @@ useEffect(() => {
   }
 
   if (isError) {
-    return (
-      <div className={css.errorText} style={{ background: '#fff', padding: '24px', borderRadius: '12px', border: '1px solid var(--error-color)' }}>
-        <p style={{ fontWeight: 600, color: 'var(--error-color)', marginBottom: '8px' }}>
-          🔴 Ошибка загрузки психологов!
-        </p>
-        <pre style={{ fontSize: '12px', textAlign: 'left', whiteSpace: 'pre-wrap', color: '#181c1c' }}>
-          {error instanceof Error ? error.message : "Неизвестная ошибка"}
-        </pre>
-      </div>
-    );
+    return <p className={css.errorText}>Something went wrong. Please refresh the page.</p>;
   }
 
   // Схлопываем двумерный массив страниц TanStack Query в один плоский массив
