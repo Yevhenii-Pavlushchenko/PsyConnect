@@ -1,28 +1,43 @@
-.formContainer,
-.successContainer {
+/* --- ОСНОВНІ КОНТЕЙНЕРИ --- */
+.formContainer {
     display: flex;
     flex-direction: column;
+    background-color: var(--white-color);
+    height: 775px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- 1. ШАПКА ФОРМИ (Фіксована, біла) --- */
+.formHeader {
+    padding: 32px 32px 16px 32px;
+    background-color: var(--white-color);
 }
 
 .title {
-    font-size: 40px;
+    font-size: 24px;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.3;
     color: var(--black-color);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
 }
 
-/* Блок психолога */
 .psychologistBrief {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .avatarWrapper {
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     overflow: hidden;
 }
@@ -32,40 +47,51 @@
 }
 
 .psychologistName {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 600;
     color: var(--black-color);
 }
 
-/* Поля ввода и лейблы */
-.form {
+/* --- 2. ЦЕНТРАЛЬНИЙ БЛОК (Сірий, фіксований під інпути) --- */
+.scrollContainer {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
+    /* 🔴 Збільшено до 24px, щоб знизу інпута залишалось місце під абсолютну помилку */
+    padding: 24px 32px;
+    background-color: var(--background-color);
+    border-top: 1px solid #e0e3e1;
+    border-bottom: 1px solid #e0e3e1;
+    flex-grow: 1;
 }
 
+/* --- ПОЛЯ ВВОДУ (ІНПУТИ) --- */
 .inputWrapper {
+    position: relative;
+    /* 🔴 ОБОВ'ЯЗКОВО для абсолютного позиціонування помилок всередині */
     display: flex;
     flex-direction: column;
     gap: 8px;
-    flex: 1;
+    /* flex: 1; <-- ВИДАЛЕНО, інпути тепер не тягнуться */
 }
 
 .inputLabel {
     font-size: 14px;
     font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
     color: var(--black-color);
 }
 
 .fieldGroup {
     display: flex;
     align-items: center;
-    border: 1px solid rgba(24, 28, 28, 0.1);
-    border-radius: 12px;
-    padding: 16px;
-    gap: 14px;
+    border: 1px solid var(--text-color);
+    border-radius: 8px;
+    padding: 8px 16px;
+    gap: 16px;
     transition: var(--transition);
-    background-color: transparent;
+    background-color: var(--white-color);
 }
 
 .fieldGroup:focus-within {
@@ -74,7 +100,7 @@
 
 .inputIcon {
     fill: none;
-    stroke: rgba(24, 28, 28, 0.5);
+    stroke: var(--text-color);
     transition: var(--transition);
 }
 
@@ -96,13 +122,24 @@
     color: rgba(24, 28, 28, 0.4);
 }
 
-/* Ряд Дата/Время */
 .dateTimeRow {
     display: flex;
+    justify-content: space-between;
+    /* Раздвигает инпуты по краям, если контейнер шире */
     gap: 8px;
+    width: 100%;
 }
 
-/* Кастомный Dropdown и скрытие скроллбара */
+/* 🔴 ДОБАВЬ этот новый селектор, чтобы задать жесткую ширину для Date и Time */
+.dateTimeRow .inputWrapper {
+    width: 261px;
+    flex-grow: 0;
+    /* Запрещаем инпутам растягиваться шире указанного размера */
+    flex-shrink: 0;
+    /* Запрещаем им сжиматься */
+}
+
+/* --- КАСТОМНИЙ DROPDOWN ЧАСУ --- */
 .dropdownTrigger {
     position: relative;
     cursor: pointer;
@@ -135,42 +172,36 @@
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
     max-height: 180px;
     overflow-y: auto;
-    z-index: 10;
+    z-index: 1100;
+    /* Перекриває все */
     padding: 8px 0;
-
-    /* Скрытие скроллбара для всех браузеров */
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE и Edge */
 }
 
 .dropdownMenu::-webkit-scrollbar {
     display: none;
-    /* Chrome, Safari, Opera */
 }
 
 .dropdownItem {
-    padding: 10px 16px;
+    padding: 8px 16px;
     font-size: 16px;
-    color: rgba(24, 28, 28, 0.3);
+    line-height: 1.5;
+    color: var(--black-color);
     transition: var(--transition);
     cursor: pointer;
 }
 
-.dropdownItem:hover {
-    background-color: rgba(24, 28, 28, 0.05);
-    color: var(--black-color);
+.dropdownItem:hover,
+.dropdownItemActive {
+    background-color: var(--accent-color);
+    color: var(--white-color);
 }
 
 .dropdownItemActive {
-    color: var(--white-color);
-    background-color: var(--accent-color) !important;
     font-weight: 500;
 }
 
-/* Ошибки */
+/* --- 🔴 ВАЛІДАЦІЯ ТА ПОМИЛКИ (АБСОЛЮТНІ) --- */
 .inputError {
     border-color: var(--error-color) !important;
 }
@@ -180,71 +211,47 @@
 }
 
 .errorText {
-    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    /* 🔴 Стає рівно під інпутом впритул, не рухаючи його */
+    left: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--error-color);
-    padding-left: 4px;
+    white-space: nowrap;
+    /* Запобігає переносу тексту помилки на новий рядок */
+    z-index: 10;
 }
 
-/* Блок кнопок в футере */
+.errorIcon {
+    flex-shrink: 0;
+    stroke: var(--error-color);
+    fill: var(--error-color);
+}
+
+/* --- 3. ФУТЕР ФОРМИ З КНОПКАМИ (Фіксований, білий) --- */
 .formActions {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-top: 24px;
+    padding: 24px 32px;
+    background-color: var(--white-color);
+    margin-top: auto;
+    /* 🔴 Залізобетонно притискає футер до низу formContainer */
 }
 
-.cancelButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    background-color: transparent;
-    border: 1px solid rgba(24, 28, 28, 0.1);
-    border-radius: 30px;
-    padding: 16px 32px;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--black-color);
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.cancelButton:hover {
-    background-color: rgba(24, 28, 28, 0.02);
-}
-
-.cancelArrow {
-    fill: none;
-    stroke: var(--black-color);
-}
-
-.submitButton {
-    background-color: var(--accent-color);
-    color: var(--white-color);
-    border: none;
-    border-radius: 30px;
-    padding: 16px 32px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.submitButton:hover {
-    background-color: var(--accent-hover-color);
-}
-
-.submitButton:disabled {
-    background-color: var(--background-third-color);
-    color: var(--text-color);
-    cursor: not-allowed;
-}
-
-/* Экран Успеха */
+/* --- ЕКРАН УСПІШНОГО БРОНЮВАННЯ --- */
 .successContainer {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px 0;
+    padding: 40px 24px;
+    justify-content: center;
+    height: 100%;
 }
 
 .successIconWrapper {

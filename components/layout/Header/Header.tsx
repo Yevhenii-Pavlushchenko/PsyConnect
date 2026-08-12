@@ -131,7 +131,12 @@ export default function Header() {
       <Modal isOpen={activeModal === 'register'} onClose={closeModal}>
         <RegistrationForm />
       </Modal>
-       <Modal isOpen={activeModal === 'booking'} onClose={closeModal}>
+      <Modal
+        isOpen={activeModal === 'booking'}
+        onClose={closeModal}
+        padding={0}
+         maxHeight="775px"
+        maxWidth="600px">
         <BookingForm />
       </Modal>
     </>

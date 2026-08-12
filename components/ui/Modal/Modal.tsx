@@ -7,9 +7,21 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  padding?: string | number;
+  maxWidth?: string | number;
+  maxHeight?: string | number; // 🔴 Новый проп для ограничения высоты окна
+  className?: string;
 }
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({ 
+  isOpen, 
+  onClose, 
+  children,
+  padding,
+  maxWidth,
+  maxHeight,
+  className = ""
+}: ModalProps) {
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -28,7 +40,15 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
 
   return (
     <div className={css.overlay} onClick={onClose}>
-      <div className={css.modal} onClick={(e) => e.stopPropagation()}>
+      <div 
+        className={`${css.modal} ${className}`} 
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          padding: padding !== undefined ? padding : undefined,
+          maxWidth: maxWidth !== undefined ? maxWidth : undefined,
+          maxHeight: maxHeight !== undefined ? maxHeight : undefined, // 🔴 Передаем высоту в инлайн-стили
+        }}
+      >
         <button className={css.closeButton} onClick={onClose} aria-label="Close modal">
           <svg width="20" height="20">
             <use href="/sprite.svg#icon-close"></use>
