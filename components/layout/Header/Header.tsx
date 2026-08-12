@@ -11,6 +11,7 @@ import RegistrationForm from "@/components/forms/RegistrationForm/RegistrationFo
 import toast from "react-hot-toast";
 import { api } from "@/lib/api"; 
 import Button from "../../ui/Button/Button"; 
+import BookingForm from "@/components/forms/BookingForm/BookingForm";
 
 export default function Header() {
   const pathname = usePathname();
@@ -129,6 +130,9 @@ export default function Header() {
 
       <Modal isOpen={activeModal === 'register'} onClose={closeModal}>
         <RegistrationForm />
+      </Modal>
+       <Modal isOpen={activeModal === 'booking'} onClose={closeModal}>
+        <BookingForm />
       </Modal>
     </>
   );

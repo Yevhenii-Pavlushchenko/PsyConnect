@@ -1,0 +1,283 @@
+.formContainer,
+.successContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--black-color);
+    margin-bottom: 24px;
+}
+
+/* Блок психолога */
+.psychologistBrief {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.avatarWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar {
+    object-fit: cover;
+}
+
+.psychologistName {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black-color);
+}
+
+/* Поля ввода и лейблы */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.inputLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black-color);
+}
+
+.fieldGroup {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(24, 28, 28, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    gap: 14px;
+    transition: var(--transition);
+    background-color: transparent;
+}
+
+.fieldGroup:focus-within {
+    border-color: var(--accent-color);
+}
+
+.inputIcon {
+    fill: none;
+    stroke: rgba(24, 28, 28, 0.5);
+    transition: var(--transition);
+}
+
+.fieldGroup:focus-within .inputIcon {
+    stroke: var(--accent-color);
+}
+
+.input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--black-color);
+    background: transparent;
+}
+
+.input::placeholder {
+    color: rgba(24, 28, 28, 0.4);
+}
+
+/* Ряд Дата/Время */
+.dateTimeRow {
+    display: flex;
+    gap: 8px;
+}
+
+/* Кастомный Dropdown и скрытие скроллбара */
+.dropdownTrigger {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.placeholderText {
+    color: rgba(24, 28, 28, 0.4);
+}
+
+.arrowIcon {
+    fill: none;
+    stroke: var(--black-color);
+    transition: transform var(--transition);
+    margin-left: auto;
+}
+
+.arrowOpen {
+    transform: rotate(180deg);
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    background-color: var(--white-color);
+    border: 1px solid rgba(24, 28, 28, 0.1);
+    border-radius: 12px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 8px 0;
+
+    /* Скрытие скроллбара для всех браузеров */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE и Edge */
+}
+
+.dropdownMenu::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+.dropdownItem {
+    padding: 10px 16px;
+    font-size: 16px;
+    color: rgba(24, 28, 28, 0.3);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: rgba(24, 28, 28, 0.05);
+    color: var(--black-color);
+}
+
+.dropdownItemActive {
+    color: var(--white-color);
+    background-color: var(--accent-color) !important;
+    font-weight: 500;
+}
+
+/* Ошибки */
+.inputError {
+    border-color: var(--error-color) !important;
+}
+
+.inputError .inputIcon {
+    stroke: var(--error-color) !important;
+}
+
+.errorText {
+    font-size: 12px;
+    color: var(--error-color);
+    padding-left: 4px;
+}
+
+/* Блок кнопок в футере */
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.cancelButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: transparent;
+    border: 1px solid rgba(24, 28, 28, 0.1);
+    border-radius: 30px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.cancelButton:hover {
+    background-color: rgba(24, 28, 28, 0.02);
+}
+
+.cancelArrow {
+    fill: none;
+    stroke: var(--black-color);
+}
+
+.submitButton {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 30px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submitButton:hover {
+    background-color: var(--accent-hover-color);
+}
+
+.submitButton:disabled {
+    background-color: var(--background-third-color);
+    color: var(--text-color);
+    cursor: not-allowed;
+}
+
+/* Экран Успеха */
+.successContainer {
+    align-items: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.successIconWrapper {
+    margin-bottom: 20px;
+}
+
+.successIcon {
+    fill: var(--accent-color);
+}
+
+.successTitle {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--black-color);
+    margin-bottom: 20px;
+}
+
+.successSubtitle {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.closeButton {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 30px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: var(--transition);
+}

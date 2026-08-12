@@ -58,10 +58,7 @@ export default function PsychologistCard({
   };
 
   const handleBookSessionClick = () => {
-    if (!isLoggedIn) {
-      openAuthToast();
-      return;
-    }
+      console.log("Спроба відкрити модалку для:", psychologist.name);
     openModal("booking", {
       _id: psychologist._id,
       name: psychologist.name,
