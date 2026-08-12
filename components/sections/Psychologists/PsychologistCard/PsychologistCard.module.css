@@ -50,14 +50,15 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background-color: rgba(13, 108, 74, 0.1);
+    background-color: var(--accent-placeholder-color);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     color: var(--accent-color);
-    padding: 6px 12px;
+    padding: 4px 12px;
     border-radius: 20px;
     font-weight: 500;
     font-size: 14px;
     width: max-content;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .badgeFree svg {
@@ -68,14 +69,14 @@
 /* Ряд шапки карточки */
 .cardHeader {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     align-items: flex-start;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .avatarContainer {
-    width: 44px;
-    height: 44px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -88,13 +89,13 @@
 .headerInfo {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 }
 
 .name {
     font-weight: 600;
-    font-size: 18px;
-    line-height: 1.2;
+    font-size: 24px;
+    line-height: 1.3;
     color: var(--black-color);
 }
 
@@ -104,18 +105,24 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: rgba(24, 28, 28, 0.6);
+    line-height: 1.4;
 }
 
 .metaItem {
     display: flex;
     align-items: center;
+    
     gap: 4px;
 }
 
 .starIcon {
     fill: var(--yellow-color) !important;
     stroke: var(--yellow-color) !important;
+}
+
+.caseIcon {
+    fill: none;
+    stroke: var(--black-color);
 }
 
 .separator {
@@ -125,26 +132,27 @@
 /* Маленькие теги специализации внутри шапки */
 .specializationTags {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
-    margin-top: 4px;
+    /* margin-top: 4px; */
 }
 
 .specTag {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 500;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    padding: 2px 8px;
-    border-radius: 4px;
+    line-height: 1.4;
+    background-color: var(--background-second-color);
+    padding: 4px 8px;
+    border-radius: 6px;
 }
 
 /* 🟢 ОПИСАНИЕ: Ограничение в 2 строки с троеточием для свернутого состояния */
 .aboutText {
     font-size: 14px;
-    line-height: 1.5;
-    color: var(--text-color);
-    margin-bottom: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 16px;
+    max-width: 400px;
 }
 
 .collapsedText {
@@ -165,28 +173,33 @@
 }
 
 .condTag {
-    border: 1px solid rgba(24, 28, 28, 0.1);
+    border: 1px solid var(--border-color);
     color: var(--text-color);
+    background-color: var(--background-second-color);
     padding: 4px 12px;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
 }
 
 /* СТИЛИ РАСКРЫТОЙ ОБЛАСТИ (ОТЗЫВЫ) */
 .expandedArea {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    border-top: 1px solid rgba(24, 28, 28, 0.05);
+    gap: 28px;
     padding-top: 16px;
     margin-bottom: 16px;
 }
 
+
 .sectionTitle {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--black-color);
-    margin-bottom: 8px;
+font-weight: 600;
+font-size: 14px;
+line-height: 1.4;
+letter-spacing: 0.01em;
+color: var(--grey-color);
+margin-bottom: 12px;
 }
 
 .approachTags {
@@ -211,9 +224,10 @@
 }
 
 .reviewItem {
-    background-color: rgba(241, 244, 242, 0.5);
+  background: rgba(241, 244, 242, 0.5);
+    border: 1px solid rgba(191, 201, 193, 0.2);
     padding: 12px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .reviewerHeader {
@@ -223,17 +237,18 @@
     margin-bottom: 6px;
 }
 
-.avatarContainer{
-    width: 80px;
-    height: 80px;
+.avatarContainerReviewer {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
 }
 
 .reviewerAvatar {
-    width: 80px;
-    height: 80px;
-    background-color: var(--accent-placeholder-color);
-    color: var(--accent-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--accent-color);;
+    color: var(--white-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -251,9 +266,9 @@
 }
 
 .reviewComment {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.4;
-    color: var(--text-color);
+    max-width: 450px;
 }
 
 /* ФУТЕР КАРТКИ */

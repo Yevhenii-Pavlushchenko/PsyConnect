@@ -4,7 +4,8 @@ import css from "./Button.module.css";
 import Link from "next/link";
 
 export type ButtonColor = "green" | "white";
-export type ButtonSize = "large" | "small" | "zero"; // 🟢 Додали zero
+export type ButtonSize = "large" | "small" | "zero"; 
+export type ButtonSizesIcon = "big-arrow" | "small-arrow"; 
 
 interface ButtonProps {
   text: string;
@@ -14,6 +15,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   icon?: string;
+  iconSize?: ButtonSizesIcon;
   type?: "button" | "submit" | "reset";
   href?: string;
   target?: string;
@@ -30,6 +32,7 @@ export default function Button({
   onClick,
   className,
   icon,
+  iconSize,
   type,
   href,
   target,
@@ -51,7 +54,7 @@ export default function Button({
   const content = (
     <>
       {icon && (
-        <svg className={css.btnIcon} width="24" height="24">
+        <svg className={`${css.btnIcon} ${iconSize ? css[iconSize] : css["big-arrow"]}`}>
           <use href={`/sprite.svg#${icon}`}></use>
         </svg>
       )}
