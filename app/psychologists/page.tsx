@@ -5,6 +5,7 @@ import css from "./page.module.css";
 import PsychologistsPageTitle from "@/components/sections/Psychologists/PsychologistsPageTitle/PsychologistsPageTitle";
 import FilterBar from "@/components/sections/Psychologists/FilterBar/FilterBar";
 import PsychologistsList from "@/components/sections/Psychologists/PsychologistsList/PsychologistsList";
+import AuthToast from "@/components/sections/Psychologists/AuthToast/AuthToast";
 
 interface PageProps {
   searchParams: Promise<{
@@ -34,6 +35,7 @@ export default function PsychologistsPage({ searchParams }: PageProps) {
 
         {/* Список карток */}
         <PsychologistsList filters={filters} />
+        <AuthToast />
       </div>
     </div>
   );

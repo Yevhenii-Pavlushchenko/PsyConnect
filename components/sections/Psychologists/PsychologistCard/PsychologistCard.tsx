@@ -75,7 +75,7 @@ export default function PsychologistCard({
         onClick={handleFavoriteClick}
         aria-label="Toggle favorite"
       >
-        <svg width="22" height="22">
+        <svg width="36" height="35">
           <use href="/sprite.svg#icon-heart"></use>
         </svg>
       </button>

@@ -29,20 +29,33 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    color: var(--black-color);
-    fill: none;
-    stroke: currentColor;
+    color: var(--text-color);
+    /* Исходный цвет контура */
     z-index: 10;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favoriteBtn svg {
+    fill: var(--text-color);
+    stroke: currentColor;
+    transition: fill var(--transition), stroke var(--transition);
 }
 
 .favoriteBtn:hover {
     transform: scale(1.1);
 }
 
-.isFavoriteActive {
-    color: var(--accent-color);
+/* 🟢 Активное состояние: перекрашиваем и контур, и заливку в наш зеленый */
+.favoriteBtn.isFavoriteActive {
     fill: var(--accent-color);
+}
+
+.favoriteBtn.isFavoriteActive svg {
+    fill: var(--accent-color);
+    stroke: var(--accent-color);
 }
 
 /* Зеленый бейдж бесплатной сессии */
@@ -302,4 +315,99 @@ margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.toastCard {
+    background-color: var(--white-color);
+    border: 1px solid rgba(191, 201, 193, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(45, 106, 79, 0.08);
+    padding: 20px;
+    width: 320px;
+    position: relative;
+    font-family: var(--font-manrope), sans-serif;
+    box-sizing: border-box;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    line-height: 1;
+    transition: color var(--transition);
+}
+
+.closeBtn:hover {
+    color: var(--black-color);
+}
+
+.toastHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.lockIcon {
+    font-size: 16px;
+    background-color: var(--accent-placeholder-color);
+    color: var(--accent-color);
+    padding: 6px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toastTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black-color);
+}
+
+.toastText {
+    font-size: 14px;
+    color: var(--grey-color);
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.loginBtn {
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color var(--transition);
+}
+
+.loginBtn:hover {
+    background-color: var(--accent-hover-color);
+}
+
+/* Анимации появления react-hot-toast */
+.fadeIn {
+    animation: slideIn 250ms ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(12px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
