@@ -56,16 +56,16 @@ export default function BookingForm() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { modalData, closeModal } = useModalStore();
 
-    if (!modalData) return null;
-    
-     const todayStr = new Date().toISOString().split("T")[0];
+  if (!modalData) return null;
+
+  const todayStr = new Date().toISOString().split("T")[0];
 
   if (isSuccess) {
     return (
       <div className={css.successContainer}>
         <div className={css.successIconWrapper}>
           <svg width="64" height="64" className={css.successIcon}>
-            <use href="/sprite.svg#icon-check-circle"></use>
+            <use href="/sprite.svg#icon-chacked"></use>
           </svg>
         </div>
         <h2 className={css.successTitle}>Your session has been booked!</h2>
@@ -73,9 +73,14 @@ export default function BookingForm() {
           We&apos;ll send a confirmation to your email. <br />
           {modalData.name} will contact you shortly.
         </p>
-        <button type="button" className={css.closeButton} onClick={closeModal}>
-          Close
-        </button>
+
+        <Button
+          text=" Close"
+          color="green"
+          width={460}
+          onClick={() => closeModal}
+          size="small"
+        />
       </div>
     );
   }
@@ -230,7 +235,12 @@ export default function BookingForm() {
                   <div
                     className={`${css.fieldGroup} ${errors.date && touched.date ? css.inputError : ""}`}
                   >
-                    <Field name="date" type="date" min={todayStr} className={css.input} />
+                    <Field
+                      name="date"
+                      type="date"
+                      min={todayStr}
+                      className={css.input}
+                    />
                   </div>
                   <ErrorMessage name="date">
                     {(msg) => (
