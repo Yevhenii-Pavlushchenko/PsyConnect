@@ -7,8 +7,8 @@ export default function Loading() {
       <div className={css.loaderContainer}>
         <div className={css.wheelWrapper}>
           <Image
-            src="/wheel.svg"
-            alt="Loading Wheel"
+            src="/spener.svg"
+            alt="Loading Speener"
             width={100}
             height={100}
             priority
@@ -17,8 +17,8 @@ export default function Loading() {
 
         <div className={css.busWrapper}>
           <Image
-            src="/minibus-icon.svg"
-            alt="Travel Bus"
+            src="/logo.svg"
+            alt="Logo Bus"
             width={45}
             height={45}
             priority

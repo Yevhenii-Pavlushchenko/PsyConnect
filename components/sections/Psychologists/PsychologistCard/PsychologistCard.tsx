@@ -32,9 +32,9 @@ export default function PsychologistCard({
   const { isLoggedIn } = useAuthStore();
   const { openModal, openAuthToast } = useModalStore();
 
-const ids = useFavoritesStore((state) => state.ids);
-const addFavorite = useFavoritesStore((state) => state.addFavorite);
-const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
+  const ids = useFavoritesStore((state) => state.ids);
+  const addFavorite = useFavoritesStore((state) => state.addFavorite);
+  const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
   const isFavorite = ids.includes(psychologist._id);
 
   const handleFavoriteClick = async () => {
@@ -70,25 +70,30 @@ const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
 
   return (
     <div className={`${css.card} ${isExpanded ? css.cardExpanded : ""}`}>
-      {/* Кнопка Избранного (Сердечко) — всегда в правом верхнем углу */}
- <button
-  key={`fav-btn-${psychologist._id}-${isFavorite}`} // 🟢 Принудительный сброс DOM-узла кнопки при изменении статуса
-  type="button"
-  className={`${css.favoriteBtn} ${isFavorite ? css.isFavoriteActive : ""}`}
-  onClick={handleFavoriteClick}
-  aria-label="Toggle favorite"
->
-  <svg width="25" height="25" className={css.heartSvg}>
-    {isFavorite ? (
-      <use href="/sprite.svg#icon-heart-full"></use>
-    ) : (
-      <>
-        <use href="/sprite.svg#icon-heart" className={css.heartOutline}></use>
-        <use href="/sprite.svg#icon-heart-full" className={css.heartFilled}></use>
-      </>
-    )}
-  </svg>
-</button>
+      <button
+        key={`fav-btn-${psychologist._id}-${isFavorite}`}
+        type="button"
+        className={`${css.favoriteBtn} ${isFavorite ? css.isFavoriteActive : ""}`}
+        onClick={handleFavoriteClick}
+        aria-label="Toggle favorite"
+      >
+        <svg width="25" height="25" className={css.heartSvg}>
+          {isFavorite ? (
+            <use href="/sprite.svg#icon-heart-full"></use>
+          ) : (
+            <>
+              <use
+                href="/sprite.svg#icon-heart"
+                className={css.heartOutline}
+              ></use>
+              <use
+                href="/sprite.svg#icon-heart-full"
+                className={css.heartFilled}
+              ></use>
+            </>
+          )}
+        </svg>
+      </button>
 
       {/* Бейдж бесплатной сессии (если есть) */}
       {psychologist.initial_consultation && (

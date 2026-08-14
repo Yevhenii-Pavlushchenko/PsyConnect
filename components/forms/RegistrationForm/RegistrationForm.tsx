@@ -9,6 +9,15 @@ import { useAuthStore, useModalStore } from "../../../app/store/appStore";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 
+interface RegisterResponse {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    avatarUrl?: string;
+  };
+}
+
 const registerSchema = Yup.object().shape({
   name: Yup.string().min(2, "Too short!").required("Name is required"),
   email: Yup.string()
@@ -36,29 +45,31 @@ export default function RegistrationForm() {
         validationSchema={registerSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const response = await api.post<{
-             token?: string;
-              user: {
-                name: string;
-                email: string;
-              };
-            }>("/api/auth/register", values);
-            
-            // 🔴 ВИВОДИМО В КОНСОЛЬ, ЩОБ ПОБАЧИТИ СТРУКТУРУ ВІДПОВІДІ БЕКЕНДУ:
+            const response = await api.post<RegisterResponse>(
+              "/api/auth/register",
+              values,
+            );
+
             console.log("Бекенд реєстрації повернув:", response.data);
+
+            const user = response.data?.user;
+
+            if (!user || !user.name || !user.email) {
+              console.error(
+                "Помилка: Об'єкт користувача відсутній у відповіді сервера!",
+                response.data,
+              );
+              toast.error("Registration failed: invalid user profile data.");
+              return;
+            }
 
             toast.success("Account created successfully!");
 
-            // 🟢 Викликаємо правильний метод `login` з нового стору
-            login(
-              { 
-                name: response.data.user.name, 
-                email: response.data.user.email 
-              },
-              response.data.token || ""
-            );
-            
-            // 🟢 Закриваємо модалку універсальним методом
+            login({
+              name: user.name,
+              email: user.email,
+            });
+
             closeModal();
           } catch (error: unknown) {
             if (error instanceof AxiosError) {
@@ -165,8 +176,7 @@ export default function RegistrationForm() {
 
       <p className={css.switchFormText}>
         Already have an account?{" "}
-        {/* 🟢 Викликаємо `openModal` замість застарілого `openLoginModal` */}
-        <span className={css.switchLink} onClick={() => openModal('login')}>
+        <span className={css.switchLink} onClick={() => openModal("login")}>
           Log In
         </span>
       </p>

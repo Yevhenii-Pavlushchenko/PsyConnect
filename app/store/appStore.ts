@@ -1,8 +1,5 @@
 import { create } from 'zustand';
 
-// ==========================================
-// --- 1. СТОР АВТОРИЗАЦІЇ ---
-// ==========================================
 interface User {
   name: string;
   email: string;
@@ -11,12 +8,11 @@ interface User {
 interface AuthState {
   user: User | null;
   isLoggedIn: boolean;
-  isHydrated: boolean;     // 🟢 Флаг готовности: true означает, что сессия успешно проверена на клиенте
-  checkAuth: () => void;   // 🟢 Функция автоматической проверки токена при первой загрузке приложения
-login: (user: User) => void;
+  isHydrated: boolean;     
+  checkAuth: () => void;   
+  login: (user: User) => void;
   logout: () => void;
 }
-
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null, 
@@ -28,7 +24,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     try {
       const storedUser = localStorage.getItem("user_data");
       
-      // 🟢 Якщо юзер є в локал стореджі — відновлюємо сесію. Бекенд сам перевірить куку при запиті даних
       if (storedUser) {
         set({ 
           user: JSON.parse(storedUser), 
@@ -44,21 +39,16 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   
   login: (user) => {
-    // 🟢 Більше не пишемо access_token, тільки профіль користувача
     localStorage.setItem('user_data', JSON.stringify(user));
     set({ user, isLoggedIn: true, isHydrated: true });
   },
   
   logout: () => {
-    // 🟢 Очищаємо тільки user_data
     localStorage.removeItem('user_data');
     set({ user: null, isLoggedIn: false, isHydrated: true });
   },
 }));
 
-// ==========================================
-// --- 2. СТОР МОДАЛОК ТА ТОСТІВ ---
-// ==========================================
 interface PsychologistData {
   _id: string;
   name: string;
@@ -91,9 +81,6 @@ export const useModalStore = create<ModalState>((set) => ({
     set({ isToastOpen: false }),
 }));
 
-// ==========================================
-// --- 3. СТОР УЛЮБЛЕНОГО ---
-// ==========================================
 interface FavoritesState {
   ids: string[];
   setFavorites: (ids: string[]) => void;

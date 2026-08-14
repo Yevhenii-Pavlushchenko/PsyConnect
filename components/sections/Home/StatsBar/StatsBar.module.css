@@ -7,22 +7,19 @@
     justify-content: space-around;
     align-items: center;
     max-width: 1200px;
-    /* Рекомендуется ограничить ширину контейнера */
     margin: 0 auto;
 }
 
 .statItem {
     display: flex;
     flex-direction: column;
-    /* Уменьшили гигантские отступы, чтобы контент не ломался */
     padding: 0 40px 20px;
     gap: 8px;
     flex: 1;
     position: relative;
-    /* Необходимо для позиционирования ::before */
+
 }
 
-/* Создаем разделительную линию перед 2-м и 3-м элементами */
 .statsContainer .statItem:nth-child(2)::before,
 .statsContainer .statItem:nth-child(3)::before {
     content: "";
@@ -35,7 +32,6 @@
     background-color: var(--background-third-color);
 }
 
-/* Первый элемент */
 .statsContainer .statItem:nth-child(1) {
     align-items: center;
     text-align: center;

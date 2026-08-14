@@ -6,7 +6,7 @@ import FilterDropdown from "./../FilterDropdown/FilterDropdown";
 import Button from "@/components/ui/Button/Button";
 
 const specializationOptions = [
-  { label: "All", value: "" },
+  { label: "Specialization", value: "" },
   { label: "Anxiety", value: "Anxiety" },
   { label: "OCD", value: "OCD" },
   { label: "Phobias", value: "Phobias" },
@@ -15,7 +15,7 @@ const specializationOptions = [
 ];
 
 const approachOptions = [
-  { label: "All", value: "" },
+  { label: "Therapeutic Approach", value: "" },
   { label: "CBT", value: "CBT" },
   { label: "ERP", value: "ERP" },
   { label: "ACT", value: "ACT" },
@@ -24,7 +24,7 @@ const approachOptions = [
 ];
 
 const priceOptions = [
-  { label: "All", value: "" },
+  { label: "Price per Session", value: "" },
   { label: "Under $50", value: "50" },   
   { label: "Under $100", value: "100" }, 
 ];
@@ -56,7 +56,6 @@ export default function FilterBar({ currentFilters }: FilterBarProps) {
     router.push(pathname); 
   };
 
-  // 🟢 Переименовали переменную, чтобы она на 100% отражала суть для пропсов кнопки
   const hasActiveFilters = 
     !!(currentFilters.specialization || currentFilters.approach || currentFilters.price_max);
 
@@ -95,7 +94,6 @@ export default function FilterBar({ currentFilters }: FilterBarProps) {
         />
       </div>
 
-      {/* 🟢 Убрали логическое "&&", теперь кнопка отображается всегда */}
       <Button
         text="Clear Filters"
         color="white"

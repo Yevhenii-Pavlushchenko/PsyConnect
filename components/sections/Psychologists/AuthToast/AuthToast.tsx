@@ -8,7 +8,6 @@ import Button from "@/components/ui/Button/Button";
 export default function AuthToast() {
   const { isToastOpen, closeAuthToast, openModal } = useModalStore();
 
-  // Автоматически закрываем тост через 5 секунд, как на макете
   useEffect(() => {
     if (!isToastOpen) return;
 
@@ -56,9 +55,9 @@ export default function AuthToast() {
         color="white"
         width={110}
         onClick={() => {
-          closeAuthToast(); // Сначала закрываем тост
-          openModal("login"); // Открываем модалку логина
-        }} /* 🟢 Відкриваємо модалку логіну */
+          closeAuthToast(); 
+          openModal("login"); 
+        }} 
         size="small"
       />
     </div>

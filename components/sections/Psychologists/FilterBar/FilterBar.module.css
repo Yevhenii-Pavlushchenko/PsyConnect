@@ -6,8 +6,8 @@
     margin-bottom: 32px;
     width: 100%;
 
-    /* Твої нові стилі для плашки фільтрів */
-    background: #fff;
+
+    background: var(--white-color);
     border: 1px solid rgba(191, 201, 193, 0.3);
     border-radius: 12px;
     padding: 16px;

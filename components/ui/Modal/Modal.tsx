@@ -46,7 +46,7 @@ export default function Modal({
         style={{
           padding: padding !== undefined ? padding : undefined,
           maxWidth: maxWidth !== undefined ? maxWidth : undefined,
-          maxHeight: maxHeight !== undefined ? maxHeight : undefined, // 🔴 Передаем высоту в инлайн-стили
+          maxHeight: maxHeight !== undefined ? maxHeight : undefined, 
         }}
       >
         <button className={css.closeButton} onClick={onClose} aria-label="Close modal">

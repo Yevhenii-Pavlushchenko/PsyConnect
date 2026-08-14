@@ -27,13 +27,8 @@ export default function PsychologistsPage({ searchParams }: PageProps) {
   return (
     <div className={css.pageWrapper}>
       <div className={css.container}>
-        {/* Підключаємо винесений заголовок сторінки */}
         <PsychologistsPageTitle />
-
-        {/* Панель фільтрів */}
         <FilterBar currentFilters={filters} />
-
-        {/* Список карток */}
         <PsychologistsList filters={filters} />
         <AuthToast />
       </div>

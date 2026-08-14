@@ -21,7 +21,7 @@ interface ButtonProps {
   target?: string;
   disabled?: boolean;
   noBorder?: boolean;
-  fontSize?: number; // 🟢 НАШ НОВИЙ ПРОП ДЛЯ РОЗМІРУ ШРИФТУ
+  fontSize?: number; 
 }
 
 export default function Button({
@@ -38,14 +38,13 @@ export default function Button({
   target,
   disabled,
   noBorder = false,
-  fontSize, // 🟢 Деструктуризуємо
+  fontSize, 
 }: ButtonProps) {
   
   const btnClassName = `${css.btn} ${css[color]} ${css[size]} ${
     noBorder ? css.noBorder : ""
   } ${className || ""}`;
   
-  // 🟢 Додаємо fontSize в інлайнові стилі, якщо він переданий
   const btnStyle = { 
     width: `${width}px`,
     ...(fontSize && { fontSize: `${fontSize}px` })

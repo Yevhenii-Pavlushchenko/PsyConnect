@@ -30,9 +30,7 @@
     padding: 8px 16px;
 
 }
-.icon-tag-line{
 
-}
 .taglineText {
     font-size: 12px;
     font-weight: 600;
@@ -58,7 +56,6 @@
     padding-bottom: 32px;
     max-width: 480px;
 }
-/* СТИЛИ ДЛЯ ПРАВОЙ СЕКЦИИ С ФОТО */
 .visualColumn {
     display: flex;
     justify-content: flex-end;
@@ -75,7 +72,6 @@
     border-radius: 32px;
 }
 
-/* Общие стили для "летающих" бейджей */
 .floatingBadge {
     position: absolute;
     box-shadow: 0 12px 24px 0 rgba(45, 106, 79, 0.1);
@@ -124,5 +120,4 @@
 
 .badgeText {
     display: flex;
-    /* flex-direction: column; */
 }

@@ -2,12 +2,9 @@
     position: fixed;
     bottom: 32px;
     right: 32px;
-    /* Если нужно строго по макету слева. Если справа — замени на right: 32px */
     z-index: 999;
-    /* Чтобы тост был поверх карточек, но ниже больших модалок */
-
     background-color: var(--white-color);
-border: 1px solid #e0e3e1;
+    border: 1px solid #e0e3e1;
     border-radius: 12px;
     padding: 16px;
     box-shadow: 0 4px 24px rgba(45, 106, 79, 0.08);
@@ -87,7 +84,6 @@ border: 1px solid #e0e3e1;
     background-color: var(--accent-hover-color);
 }
 
-/* Плавная анимация вылета снизу вверх */
 .fadeIn {
     animation: slideIn var(--transition) ease forwards;
 }

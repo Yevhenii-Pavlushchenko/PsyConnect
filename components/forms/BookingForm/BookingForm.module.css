@@ -1,4 +1,3 @@
-/* --- ОСНОВНІ КОНТЕЙНЕРИ --- */
 .formContainer {
     display: flex;
     flex-direction: column;
@@ -15,7 +14,6 @@
     width: 100%;
 }
 
-/* --- 1. ШАПКА ФОРМИ (Фіксована, біла) --- */
 .formHeader {
     padding: 32px 32px 16px 32px;
     background-color: var(--white-color);
@@ -53,12 +51,10 @@
     color: var(--black-color);
 }
 
-/* --- 2. ЦЕНТРАЛЬНИЙ БЛОК (Сірий, фіксований під інпути) --- */
 .scrollContainer {
     display: flex;
     flex-direction: column;
     gap: 24px;
-    /* 🔴 Збільшено до 24px, щоб знизу інпута залишалось місце під абсолютну помилку */
     padding: 24px 32px;
     background-color: var(--background-color);
     border-top: 1px solid #e0e3e1;
@@ -66,14 +62,11 @@
     flex-grow: 1;
 }
 
-/* --- ПОЛЯ ВВОДУ (ІНПУТИ) --- */
 .inputWrapper {
     position: relative;
-    /* 🔴 ОБОВ'ЯЗКОВО для абсолютного позиціонування помилок всередині */
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* flex: 1; <-- ВИДАЛЕНО, інпути тепер не тягнуться */
 }
 
 .inputLabel {
@@ -126,21 +119,16 @@
 .dateTimeRow {
     display: flex;
     justify-content: space-between;
-    /* Раздвигает инпуты по краям, если контейнер шире */
     gap: 8px;
     width: 100%;
 }
 
-/* 🔴 ДОБАВЬ этот новый селектор, чтобы задать жесткую ширину для Date и Time */
 .dateTimeRow .inputWrapper {
     width: 261px;
     flex-grow: 0;
-    /* Запрещаем инпутам растягиваться шире указанного размера */
     flex-shrink: 0;
-    /* Запрещаем им сжиматься */
 }
 
-/* --- КАСТОМНИЙ DROPDOWN ЧАСУ --- */
 .dropdownTrigger {
     position: relative;
     cursor: pointer;
@@ -174,7 +162,6 @@
     max-height: 180px;
     overflow-y: auto;
     z-index: 1100;
-    /* Перекриває все */
     padding: 8px 0;
     scrollbar-width: none;
 }
@@ -202,7 +189,6 @@
     font-weight: 500;
 }
 
-/* --- 🔴 ВАЛІДАЦІЯ ТА ПОМИЛКИ (АБСОЛЮТНІ) --- */
 .inputError {
     border-color: var(--error-color) !important;
 }
@@ -214,7 +200,6 @@
 .errorText {
     position: absolute;
     bottom: -18px;
-    /* 🔴 Стає рівно під інпутом впритул, не рухаючи його */
     left: 4px;
     display: flex;
     align-items: center;
@@ -223,7 +208,6 @@
     font-weight: 500;
     color: var(--error-color);
     white-space: nowrap;
-    /* Запобігає переносу тексту помилки на новий рядок */
     z-index: 10;
 }
 
@@ -233,7 +217,6 @@
     fill: var(--error-color);
 }
 
-/* --- 3. ФУТЕР ФОРМИ З КНОПКАМИ (Фіксований, білий) --- */
 .formActions {
     display: flex;
     justify-content: flex-end;
@@ -241,10 +224,8 @@
     padding: 24px 32px;
     background-color: var(--white-color);
     margin-top: auto;
-    /* 🔴 Залізобетонно притискає футер до низу formContainer */
 }
 
-/* --- ЕКРАН УСПІШНОГО БРОНЮВАННЯ --- */
 .successContainer {
     display: flex;
     flex-direction: column;
@@ -273,7 +254,7 @@
 }
 
 .successTitle {
-font-weight: 600;
+    font-weight: 600;
     font-size: 32px;
     line-height: 1.25;
     letter-spacing: -0.01em;
@@ -287,4 +268,3 @@ font-weight: 600;
     color: var(--text-color);
     margin-bottom: 32px;
 }
-

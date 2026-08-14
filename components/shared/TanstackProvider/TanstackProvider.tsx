@@ -2,7 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
-import { useAuthStore } from "@/app/store/appStore"; // Проверь этот путь к твоему файлу стора!
+import { useAuthStore } from "@/app/store/appStore"; 
 
 interface TanstackProviderProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ export default function TanstackProvider({ children }: TanstackProviderProps) {
   const checkAuth = useAuthStore((state) => state.checkAuth);
 
   useEffect(() => {
-    checkAuth(); // 🟢 Восстанавливаем сессию из localStorage один раз при загрузке приложения
+    checkAuth();
   }, [checkAuth]);
 
   return (

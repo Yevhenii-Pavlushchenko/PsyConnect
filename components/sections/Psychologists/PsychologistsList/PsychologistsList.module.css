@@ -7,12 +7,11 @@
 
 .listContainer {
     display: grid;
-    /* 🟢 Задаем каждой колонке строго 644px, как в Фигме */
     grid-template-columns: repeat(2, 644px);
     gap: 24px;
     width: 100%;
     justify-content: center;
-    /* Центрируем сетку в контейнере */
+
 }
 
 .paginationBlock {

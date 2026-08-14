@@ -8,14 +8,12 @@
 
     width: 644px;
     height: 353px;
-    /* Фиксированная высота из Фигмы для закрытого состояния */
     padding: 24px;
     box-sizing: border-box;
     position: relative;
     transition: height var(--transition);
 }
 
-/* 🟢 Стиль для открытого состояния карточки: сбрасываем фиксированную высоту */
 .cardExpanded {
     height: auto !important;
 }
@@ -36,12 +34,10 @@
 }
 
 .favoriteBtn svg {
-    /* Задаем базовые цвета для иконок из переменных проекта */
     fill: var(--black-color);
     stroke: var(--black-color);
 }
 
-/* В обычном состоянии полное сердце внутри скрыто */
 .heartFilled {
     display: none;
 }
@@ -50,7 +46,6 @@
     display: block;
 }
 
-/* 🟢 Эффект Ховера: плавно увеличиваем и подменяем контур на полное сердце */
 .favoriteBtn:hover {
     transform: scale(1.1);
 }
@@ -68,13 +63,11 @@
     display: block;
 }
 
-/* 🟢 Активное состояние: когда карточка уже в избранном */
 .favoriteBtn.isFavoriteActive svg {
     fill: var(--accent-color);
     stroke: var(--accent-color);
 }
 
-/* Зеленый бейдж бесплатной сессии */
 .badgeFree {
     display: inline-flex;
     align-items: center;
@@ -95,7 +88,6 @@
     stroke: currentColor;
 }
 
-/* Ряд шапки карточки */
 .cardHeader {
     display: flex;
     gap: 16px;
@@ -128,7 +120,6 @@
     color: var(--black-color);
 }
 
-/* Мета-данные в строчку под именем */
 .metaGroup {
     display: flex;
     align-items: center;
@@ -158,12 +149,10 @@
     color: rgba(24, 28, 28, 0.3);
 }
 
-/* Маленькие теги специализации внутри шапки */
 .specializationTags {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    /* margin-top: 4px; */
 }
 
 .specTag {
@@ -175,7 +164,6 @@
     border-radius: 6px;
 }
 
-/* 🟢 ОПИСАНИЕ: Ограничение в 2 строки с троеточием для свернутого состояния */
 .aboutText {
     font-size: 14px;
     line-height: 1.4;
@@ -187,13 +175,11 @@
 .collapsedText {
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    /* Строго максимум 2 строки */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Нижние прозрачные теги условий (Online, Adults и т.д.) */
 .conditionsTags {
     display: flex;
     gap: 8px;
@@ -212,7 +198,6 @@
     letter-spacing: 0.01em;
 }
 
-/* СТИЛИ РАСКРЫТОЙ ОБЛАСТИ (ОТЗЫВЫ) */
 .expandedArea {
     display: flex;
     flex-direction: column;
@@ -300,7 +285,6 @@ margin-bottom: 12px;
     max-width: 450px;
 }
 
-/* ФУТЕР КАРТКИ */
 .cardFooter {
     display: flex;
     justify-content: space-between;
@@ -308,7 +292,6 @@ margin-bottom: 12px;
     border-top: 1px solid rgba(24, 28, 28, 0.05);
     padding-top: 14px;
     margin-top: auto;
-    /* Прижимает футер строго к низу фиксированной карточки */
 }
 
 .priceBlock {
@@ -411,7 +394,6 @@ margin-bottom: 12px;
     background-color: var(--accent-hover-color);
 }
 
-/* Анимации появления react-hot-toast */
 .fadeIn {
     animation: slideIn 250ms ease forwards;
 }

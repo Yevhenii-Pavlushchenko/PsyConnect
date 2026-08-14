@@ -19,11 +19,9 @@ export default function FilterDropdown({ label, options, value, onChange }: Filt
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Находим текст выбранной опции для отображения в кнопке
   const selectedOption = options.find((opt) => opt.value === value);
   const displayLabel = selectedOption ? selectedOption.label : label;
 
-  // Закрытие дропдауна по клику вне его области
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {

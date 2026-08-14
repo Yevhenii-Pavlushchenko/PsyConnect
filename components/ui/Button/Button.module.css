@@ -62,22 +62,15 @@
 }
 
 .btn svg {
-    /* width: 16px; */
-    /* height: 16px; */
     fill: currentColor;
     stroke: currentColor;
 }
 
-/* ... все твои прошлые стили .btn, .green, .white и т.д. ... */
-
-/* 🔴 Новый класс для отключения рамки */
 .noBorder {
     border: none !important;
 }
 
-/* Также убедись, что для disabled кнопок у тебя прописаны базовые стили: */
 .btn:disabled {
-    /* background-color: var(--background-third-color); */
     color: var(--text-color);
     border-color: rgba(24, 28, 28, 0.1);
     cursor: not-allowed;

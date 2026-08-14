@@ -1,5 +1,4 @@
 "use client";
- 
 
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -10,7 +9,6 @@ import EmptyState from "../EmptyState/EmptyState";
 import Button from "@/components/ui/Button/Button";
 import PsychologistCard from "../PsychologistCard/PsychologistCard";
 
-// Интерфейс данных одного психолога по ТЗ
 export interface Psychologist {
   _id: string;
   name: string;
@@ -40,9 +38,6 @@ interface PsychologistsListProps {
 }
 
 export default function PsychologistsList({ filters }: PsychologistsListProps) {
-
-    
-  // Функция запроса к бэкенду
   interface PsychologistsResponse {
     items: Psychologist[];
   }
@@ -56,21 +51,22 @@ export default function PsychologistsList({ filters }: PsychologistsListProps) {
     if (filters.specialization && filters.specialization.trim() !== "") {
       requestParams.specialization = filters.specialization;
     }
-    
+
     if (filters.approach && filters.approach.trim() !== "") {
       requestParams.approach = filters.approach;
     }
-    
+
     if (filters.price_max && filters.price_max.trim() !== "") {
       requestParams.price_max = Number(filters.price_max);
     }
 
-    // 🟢 Типизируем запрос как PsychologistsResponse
-    const response = await api.get<PsychologistsResponse>("/api/psychologists", {
-      params: requestParams,
-    });
-    
-    // 🟢 Возвращаем строго массив items, чтобы TanStack Query работал с массивами
+    const response = await api.get<PsychologistsResponse>(
+      "/api/psychologists",
+      {
+        params: requestParams,
+      },
+    );
+
     return response.data.items;
   };
 
@@ -86,19 +82,16 @@ export default function PsychologistsList({ filters }: PsychologistsListProps) {
     queryFn: fetchPsychologists,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      // Если сервер вернул меньше 4 элементов — список закончился
       return lastPage.length < 4 ? undefined : allPages.length + 1;
     },
   });
-    
-    // Внутри компонента PsychologistsList, после useInfiniteQuery:
-useEffect(() => {
-  if (isError) {
-    console.error("🔴 Ошибка загрузки психологов:", isError);
-  }
-}, [isError]);
 
-  // 1. Состояние первичной загрузки: рендерим ровно 4 скелетона по ТЗ
+  useEffect(() => {
+    if (isError) {
+      console.error("🔴 Ошибка загрузки психологов:", isError);
+    }
+  }, [isError]);
+
   if (isLoading) {
     return (
       <div className={css.listContainer}>
@@ -110,13 +103,15 @@ useEffect(() => {
   }
 
   if (isError) {
-    return <p className={css.errorText}>Something went wrong. Please refresh the page.</p>;
+    return (
+      <p className={css.errorText}>
+        Something went wrong. Please refresh the page.
+      </p>
+    );
   }
 
-  // Схлопываем двумерный массив страниц TanStack Query в один плоский массив
   const psychologists = data?.pages.flatMap((page) => page) || [];
 
-  // 2. Пустой результат фильтрации: рендерим EmptyState
   if (psychologists.length === 0) {
     return <EmptyState />;
   }
@@ -125,7 +120,10 @@ useEffect(() => {
     <div className={css.listWrapper}>
       <div className={css.listContainer}>
         {psychologists.map((psychologist) => (
-          <PsychologistCard key={psychologist._id} psychologist={psychologist} />
+          <PsychologistCard
+            key={psychologist._id}
+            psychologist={psychologist}
+          />
         ))}
       </div>
 

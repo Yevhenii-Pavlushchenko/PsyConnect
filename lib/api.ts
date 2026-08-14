@@ -32,9 +32,7 @@ api.interceptors.request.use(
   }
 );
 
-// Функція для тестового запроса по ID
 export const getPsychologistById = async (id: string) => {
   const response = await api.get(`/psychologists/${id}`);
-  console.log('Бекенд повернув ось це:', response.data);
   return response.data;
 };

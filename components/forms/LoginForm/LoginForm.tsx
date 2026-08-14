@@ -9,7 +9,6 @@ import { useAuthStore, useModalStore } from "../../../app/store/appStore";
 import { api } from "@/lib/api";
 import toast from "react-hot-toast";
 
-// 🟢 Создаем строгий интерфейс для ответа сервера на основе макета из алерта
 interface LoginResponse {
   user: {
     id: string;
@@ -45,7 +44,6 @@ export default function LoginForm() {
         validationSchema={loginSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // 🟢 Передаем созданный интерфейс LoginResponse вместо <any>
             const response = await api.post<LoginResponse>("/api/auth/login", values);
             
             const user = response.data?.user;
@@ -56,7 +54,6 @@ export default function LoginForm() {
               return;
             }
 
-            // Передаємо у метод тільки юзера, кука вже збережена браузером автоматично!
             login({
               name: user.name,
               email: user.email,
