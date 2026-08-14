@@ -21,6 +21,28 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon-icon.jpg"
   },
+   openGraph: {
+    title: "PsyConnect | Find Your Perfect Psychologist Online",
+    description: "Connect with verified professional therapists, psychologists, and life coaches online. Browse specialists, filter by approach, and book your session instantly to start your mental health journey.",
+    url: "https://psy-connect-smoky.vercel.app/", 
+    siteName: "PsyConnect",
+    images: [
+      {
+        url: "/hero.png", 
+        width: 640,
+        height: 498,
+        alt: "PsyConnect Platform Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PsyConnect | Find Your Perfect Psychologist Online",
+    description: "Connect with verified professional therapists, psychologists, and life coaches online. Browse specialists, filter by approach, and book your session instantly to start your mental health journey.",
+    images: ["/hero.png"],
+  },
 };
 
 
