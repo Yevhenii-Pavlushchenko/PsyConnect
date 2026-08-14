@@ -40,7 +40,7 @@
 }
 
 .heartIcon {
-  fill: var(--accent-color);
+  fill: inherit;
 }
 
 .active {

@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className={css.footer}>
       <div className={css.container}>
-        <Link href="/home">
+        <Link href="/">
           <div className={css.footerLogoWrapper}>
             <div className={css.footerLogoIcon}>
               <svg width="24" height="24">
