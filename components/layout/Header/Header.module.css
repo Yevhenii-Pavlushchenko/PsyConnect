@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 128px;
+  padding: 24px 64px;
   background-color: var(--white-color);
 }
 
@@ -44,6 +44,7 @@
 }
 
 .active {
+  fill: var(--accent-color);
   color: var(--accent-color);
   position: relative;
 }

@@ -9,7 +9,10 @@
 }
 
 .content {
-    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+        justify-content: center;
+        align-items: center;
 }
 
 .imageWrapper {
@@ -48,20 +51,6 @@
     line-height: 1.5;
 }
 
-.backLink {
-    display: inline-block;
-    padding: 16px 40px;
-    background-color: var(--button);
-    color:var(--main-white);
-    border-radius: 200px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.backLink:hover {
-    background-color: var(--button-hover)
-}
 
 @keyframes drive {
 

@@ -1,70 +1,47 @@
-# 🚐 Travel Trucks — Camper Rental Service
+PsyConnect 🧠
+PsyConnect — це сучасна та надійна онлайн-платформа, яка допомагає людям знайти свого ідеального психолога, терапевта або коуча та миттєво записатися на сесію. Проєкт створено з фокусом на зручність використання, швидкість роботи та турботу про ментальне здоров'я.
 
-A web application for searching and booking motorhomes (campers) across Ukraine. Find the perfect vehicle for your next adventure using a convenient catalog and an advanced filtration system.
+🚀 Про проєкт та яку задачу він вирішує
+Пошук кваліфікованої психологічної допомоги часто буває складним через брак структурованої інформації та відгуків. PsyConnect повністю вирішує цю проблему:
 
-## 🌟 Key Features
+Каталог верифікованих спеціалістів: Зручний пошук психологів із детальною інформацією про їхній досвід, підходи (CBT, IFS, Schema Therapy тощо), ціни та відгуки реальних клієнтів.
+Гнучка система фільтрації: Можливість миттєво відсортувати спеціалістів за ціною, рейтингом, мовою спілкування чи спеціалізацією.
+Приватна зона «Обране» (Favorites): Захищений маршрут для авторизованих користувачів, де можна зберігати обраних спеціалістів для швидкого доступу (сесія надійно синхронізується за допомогою кук та Zustand).
+Миттєве бронювання сесій: Зручна інтерактивна форма запису до обраного психолога.
+🛠 Технологічний стек
+Проєкт побудовано на базі передових технологій для забезпечення максимальної швидкості та чудового UI/UX:
 
-- **Camper Catalog**: View a full list of available vehicles with smooth pagination ("Load More").
-- **Detailed Descriptions**: Individual pages for each camper featuring a photo gallery, technical specifications, and user reviews.
-- **Smart Filtration**: Search by location, body type, and specific amenities (AC, Kitchen, TV, etc.).
-- **Dynamic SEO**: Individual metadata for every page and Open Graph support for enhanced social media sharing.
-- **Responsive Design**: Fully optimized for desktops and mobile devices (including Retina display support).
-- **State Handling**: Custom animated loaders (branded bus with a spinning wheel) and a stylized 404 error page.
+Framework: Next.js 16 (App Router) — для швидкого SSR/CSR рендерингу та оптимізації маршрутів.
+Бібліотека: React 19 — використання найсучасніших можливостей реактивного інтерфейсу.
+Керування станом: Zustand 5 — легкий та ультрашвидкий глобальний стор для авторизації, модальних вікон та улюблених карток.
+Робота з сервером: TanStack React Query 5 + Axios — для надійного кешування, оптимістичних оновлень та стабільної взаємодії з API.
+Форми та валідація: Formik + Yup — залізобетонна валідація полів авторизації та бронювання, захист від некоректного введення даних.
+Стилізація: CSS Modules — ізольовані та чисті CSS-стилі для кожного компонента без конфліктів у глобальній верстці.
+Анімації та сповіщення: React Hot Toast + Swiper — інтерактивні слайдери відгуків та красиві нативні тости для користувача.
+📡 Документація API
+Вся клієнтська частина повністю інтегрована з сервером розробки. Ознайомитися з маршрутами авторизації, отримання списку психологів та збереження в обране можна в офіційній документації:
 
-## 🛠 Tech Stack
+🔗 Swagger API Documentation
 
-- **Framework**: [Next.js 16 (App Router)](https://nextjs.org) — server-side rendering and performance optimization.
-- **State Management**:
-  - [TanStack Query v5](https://tanstack.com) — asynchronous requests and data caching.
-  - [Zustand](https://pmnd.rs) — lightweight and fast global state management (for favorite campers).
-- **Forms & Validation**:
-  - [Formik](https://formik.org) — handling booking forms.
-  - [Yup](https://github.com) — schema-based data validation.
-- **HTTP Client**: [Axios](https://axios-http.com) — reliable API communication.
-- **UI Components & Effects**:
-  - [Swiper](https://swiperjs.com) — modern slider for image galleries.
-  - [React Hot Toast](https://react-hot-toast.com) — stylish and lightweight notifications.
-  - [Modern Normalize](https://github.com) — CSS reset for cross-browser consistency.
-- **Styling**: CSS Modules — isolated styles for each component.
+💻 Як запустити проєкт локально
+Для запуску проєкту на комп'ютері переконайтеся, що у вас встановлено Node.js (версії 18 або новішої).
 
-## 🚀 Installation and Run
+Клонуйте репозиторій:
 
-### Requirements
+git clone https://github.com
+cd PsyConnect
+Встановіть залежності:
 
-- **Node.js 18+** (latest LTS recommended)
+npm install
+Створіть файл оточення (опціонально): Створіть файл .env.local у корені проєкту та вкажіть базову адресу бекенду:
 
-### Steps:
+NEXT_PUBLIC_API_URL=https://psy-connect.b.goit.study
+Запустіть сервер розробки:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com
-   cd travel-trucks
-   ```
+npm run dev
+Після цього відкрийте сторінку http://localhost:3000 у своєму браузері.
 
-Installation and Run
-Requirements
-Node.js 18+ (latest LTS recommended)
-Steps:
+Збірка проєкту (Production build):
 
-1. Clone the repository.
-2. Create your local environment file based on .env.example:
-   cp .env.example .env
-3. Install dependencies:
-   npm install
-4. Run in development mode:
-   npm run dev
-5. Open in browser:
-   http://localhost:3000
-
-📂 Project Structure
-/app — routing, pages, and global layouts.
-/components — reusable React components (Loader, Button, Sidebar, etc.).
-/lib — API configuration (Axios instance) and request functions.
-/public — static assets (icons, logos).
-/types — TypeScript interface definitions.
-
-👤 Author
-Yevhenii Pavlushchenko
-Deploy: https://travel-trucks-nine-vert.vercel.app
-GitHub: https://github.com/Yevhenii-Pavlushchenko
-LinkedIn: https://www.linkedin.com/in/yevhenii-pavlushchenko/
+npm run build
+npm run start
