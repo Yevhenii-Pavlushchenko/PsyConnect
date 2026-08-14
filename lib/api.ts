@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
   baseURL: 'https://psy-connect.b.goit.study', 
-   withCredentials: true,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -10,13 +10,17 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
+    // 🟢 1. Перевіряємо, що ми знаходимося в браузері, а не на сервері Next.js
+    if (typeof window === 'undefined') {
+      return config; 
+    }
+
     const token = localStorage.getItem('access_token');
     
-    // 🟢 Проверяем, что токен существует, он не равен пустой строке и не равен строке "undefined"
+    // 🟢 2. Безпечно перевіряємо та додаємо токен
     if (token && token !== "undefined" && token !== "null" && token.trim() !== "" && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     } else {
-      // 🟢 Если токена нет, принудительно удаляем заголовок, чтобы не спамить бэкенд пустой строкой
       if (config.headers) {
         delete config.headers.Authorization;
       }
@@ -28,9 +32,9 @@ api.interceptors.request.use(
   }
 );
 
-// Функция для тестового запроса по ID
+// Функція для тестового запроса по ID
 export const getPsychologistById = async (id: string) => {
   const response = await api.get(`/psychologists/${id}`);
-  console.log('Бекенд повернув ось це:', response.data); // Логируем ответ для проверки
+  console.log('Бекенд повернув ось це:', response.data);
   return response.data;
 };

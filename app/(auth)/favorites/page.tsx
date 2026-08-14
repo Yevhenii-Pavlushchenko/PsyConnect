@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from  "next/navigation";
+import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/app/store/appStore";
 import { api } from "@/lib/api";
@@ -13,39 +13,47 @@ import css from "./page.module.css";
 
 export default function FavoritesPage() {
   const router = useRouter();
-  const { isLoggedIn } = useAuthStore();
+  const { isLoggedIn, isHydrated } = useAuthStore(); // 🟢 Забираем флаг готовности стора
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    // 🟢 Делаем редирект ТОЛЬКО после того, как стор проверил localStorage
+    if (isHydrated && !isLoggedIn) {
       router.push("/");
-      // Модалка откроется автоматически, так как AuthToast или LoginModal завязаны на глобальный стор
     }
-  }, [isLoggedIn, router]);
+  }, [isLoggedIn, isHydrated, router]);
 
-  const { data: favorites = [], isLoading } = useQuery<Psychologist[]>({
+  const { data: responseData, isLoading } = useQuery({
     queryKey: ["favorites"],
     queryFn: async () => {
       const response = await api.get("/api/favorites");
       return response.data;
     },
-    enabled: isLoggedIn,
+    enabled: isHydrated && isLoggedIn, // 🟢 Делаем запрос только если сессия подтверждена
   });
 
-  if (!isLoggedIn) return null;
+  // Пока стор считывает localStorage или если пользователя перенаправляет — показываем заглушку
+  if (!isHydrated || !isLoggedIn) {
+    return <div className={css.loader}>Verifying session...</div>;
+  }
 
   if (isLoading) {
     return <div className={css.loader}>Loading your favorites...</div>;
   }
 
+  const favorites: Psychologist[] = Array.isArray(responseData) 
+    ? responseData 
+    : responseData?.data && Array.isArray(responseData.data) 
+      ? responseData.data 
+      : [];
+
   return (
     <div className={css.container}>
+      <FavoritesPageTitle />
+      
       {favorites.length === 0 ? (
         <EmptyStateFavorite />
       ) : (
-        <>
-          <FavoritesPageTitle />
-          <FavoritesList initialFavorites={favorites} />
-        </>
+        <FavoritesList initialFavorites={favorites} />
       )}
     </div>
   );

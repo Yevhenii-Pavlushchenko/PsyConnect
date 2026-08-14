@@ -16,12 +16,11 @@ import BookingForm from "@/components/forms/BookingForm/BookingForm";
 export default function Header() {
   const pathname = usePathname();
   
-  // 🟢 Беремо правильні методи з нашого оновленого useAuthStore
-  const { isLoggedIn, user, logout } = useAuthStore();
-  
+  // 🟢 Додаємо isHydrated, щоб знати, чи завершилася перевірка localStorage
+  const { isLoggedIn, user, logout, isHydrated } = useAuthStore();
   const { activeModal, openModal, closeModal } = useModalStore();
 
-   const handleLogout = async () => {
+  const handleLogout = async () => {
     try {
       await api.post("/api/auth/logout"); 
       toast.success("Logged out successfully");
@@ -65,7 +64,8 @@ export default function Header() {
                 Psychologists
               </Link>
             </li>
-            {isLoggedIn && (
+            {/* 🟢 Показуємо вкладку Favorites тільки ПІСЛЯ гідрації та якщо юзер залогінений */}
+            {isHydrated && isLoggedIn && (
               <li className={css.navigationItem}>
                 <Link
                   className={`${css.navigationLink} ${pathname === "/favorites" ? css.active : ""}`}
@@ -85,7 +85,10 @@ export default function Header() {
 
         {/* Блок Авторизації */}
         <div className={css.authBlock}>
-          {isLoggedIn ? (
+          {/* 🟢 Якщо стор ще не прочитав токен — рендеримо порожній блок або скелетон (захист від блимання кнопки) */}
+          {!isHydrated ? (
+            <div className={css.authLoadingSpacer} style={{ width: "120px" }} />
+          ) : isLoggedIn ? (
             <div className={css.authorizedMenu}>
               <div className={css.userInfo}>
                 <span className={css.userName}>Welcome, {user?.name || "User"}</span>
@@ -108,14 +111,14 @@ export default function Header() {
                 text="Log In" 
                 color="white" 
                 width={110} 
-                onClick={() => openModal('login')} /* 🟢 Відкриваємо модалку логіну */
+                onClick={() => openModal('login')} 
                 size="small"
               />
               <Button 
                 text="Sign Up" 
                 color="green" 
                 width={130} 
-                onClick={() => openModal('register')} /* 🟢 Відкриваємо модалку реєстрації */
+                onClick={() => openModal('register')} 
                 size="small"
               />
             </div>
@@ -123,7 +126,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 🟢 Тепер модалки рендеряться на основі єдиного стейту activeModal */}
+      {/* Модалки */}
       <Modal isOpen={activeModal === 'login'} onClose={closeModal}>
         <LoginForm />
       </Modal>
@@ -135,7 +138,7 @@ export default function Header() {
         isOpen={activeModal === 'booking'}
         onClose={closeModal}
         padding={0}
-         maxHeight="775px"
+        maxHeight="775px"
         maxWidth="600px">
         <BookingForm />
       </Modal>

@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 
+// ==========================================
 // --- 1. СТОР АВТОРИЗАЦІЇ ---
+// ==========================================
 interface User {
   name: string;
   email: string;
@@ -9,38 +11,54 @@ interface User {
 interface AuthState {
   user: User | null;
   isLoggedIn: boolean;
-  login: (user: User, token: string) => void;
+  isHydrated: boolean;     // 🟢 Флаг готовности: true означает, что сессия успешно проверена на клиенте
+  checkAuth: () => void;   // 🟢 Функция автоматической проверки токена при первой загрузке приложения
+login: (user: User) => void;
   logout: () => void;
 }
 
-// Безпечне зчитування юзера з localStorage при старті додатку
-const getStoredUser = (): User | null => {
-  if (typeof window === "undefined") return null;
-  try {
-    const stored = localStorage.getItem("user_data");
-    return stored ? JSON.parse(stored) : null;
-  } catch {
-    return null;
-  }
-};
 
 export const useAuthStore = create<AuthState>((set) => ({
-  user: getStoredUser(), 
-  isLoggedIn: typeof window !== "undefined" && !!localStorage.getItem("access_token"), 
-  
-  login: (user, token) => {
-    localStorage.setItem('access_token', token);
-    localStorage.setItem('user_data', JSON.stringify(user)); // Зберігаємо об'єкт юзера
-    set({ user, isLoggedIn: true });
+  user: null, 
+  isLoggedIn: false, 
+  isHydrated: false,       
+
+  checkAuth: () => {
+    if (typeof window === "undefined") return;
+    try {
+      const storedUser = localStorage.getItem("user_data");
+      
+      // 🟢 Якщо юзер є в локал стореджі — відновлюємо сесію. Бекенд сам перевірить куку при запиті даних
+      if (storedUser) {
+        set({ 
+          user: JSON.parse(storedUser), 
+          isLoggedIn: true, 
+          isHydrated: true 
+        });
+      } else {
+        set({ user: null, isLoggedIn: false, isHydrated: true });
+      }
+    } catch {
+      set({ user: null, isLoggedIn: false, isHydrated: true });
+    }
   },
+  
+  login: (user) => {
+    // 🟢 Більше не пишемо access_token, тільки профіль користувача
+    localStorage.setItem('user_data', JSON.stringify(user));
+    set({ user, isLoggedIn: true, isHydrated: true });
+  },
+  
   logout: () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user_data'); // Очищаємо при логауті
-    set({ user: null, isLoggedIn: false });
+    // 🟢 Очищаємо тільки user_data
+    localStorage.removeItem('user_data');
+    set({ user: null, isLoggedIn: false, isHydrated: true });
   },
 }));
 
+// ==========================================
 // --- 2. СТОР МОДАЛОК ТА ТОСТІВ ---
+// ==========================================
 interface PsychologistData {
   _id: string;
   name: string;
@@ -73,7 +91,9 @@ export const useModalStore = create<ModalState>((set) => ({
     set({ isToastOpen: false }),
 }));
 
+// ==========================================
 // --- 3. СТОР УЛЮБЛЕНОГО ---
+// ==========================================
 interface FavoritesState {
   ids: string[];
   setFavorites: (ids: string[]) => void;
