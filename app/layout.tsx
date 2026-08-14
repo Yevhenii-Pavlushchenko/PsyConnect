@@ -24,13 +24,13 @@ export const metadata: Metadata = {
    openGraph: {
     title: "PsyConnect | Find Your Perfect Psychologist Online",
     description: "Connect with verified professional therapists, psychologists, and life coaches online. Browse specialists, filter by approach, and book your session instantly to start your mental health journey.",
-    url: "https://psy-connect-smoky.vercel.app/", 
+    url: "https://psy-connect-smoky.vercel.app", 
     siteName: "PsyConnect",
     images: [
       {
         url: "/hero.png", 
-        width: 640,
-        height: 498,
+        width: 1200,
+        height: 630,
         alt: "PsyConnect Platform Preview",
       },
     ],
