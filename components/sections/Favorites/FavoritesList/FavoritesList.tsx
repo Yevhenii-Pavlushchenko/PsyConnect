@@ -34,15 +34,12 @@ interface FavoritesListProps {
 export default function FavoritesList({ initialFavorites }: FavoritesListProps) {
   const { ids, setFavorites } = useFavoritesStore();
 
-  // Синхронизируем стор при первой загрузке данных с бэкенда
   useEffect(() => {
     if (initialFavorites.length > 0 && ids.length === 0) {
       setFavorites(initialFavorites.map((p) => p._id));
     }
   }, [initialFavorites, ids.length, setFavorites]);
 
-  // Если стор ещё пустой при первой сборке, берём всё из бэкенда, 
-  // а если юзер нажал "дизлайк", то реактивно фильтруем по стору
   const currentIds = ids.length === 0 ? initialFavorites.map(p => p._id) : ids;
   const activeFavorites = initialFavorites.filter((p) => currentIds.includes(p._id));
 

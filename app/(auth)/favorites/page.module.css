@@ -1,7 +1,7 @@
 .container {
     padding: 40px 128px;
-    background-color: var(--background-color);
-    min-height: calc(100vh - 100px);
+    background-color: var(--white-color);
+    min-height: calc(100vh - 200px);
     /* Вычитаем условную высоту Header/Footer */
 }
 

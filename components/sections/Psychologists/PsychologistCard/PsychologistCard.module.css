@@ -20,7 +20,6 @@
     height: auto !important;
 }
 
-/* Кнопка избранного в самом углу */
 .favoriteBtn {
     position: absolute;
     top: 24px;
@@ -29,30 +28,47 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    color: var(--text-color);
-    /* Исходный цвет контура */
     z-index: 10;
-    transition: var(--transition);
+    transition: transform var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .favoriteBtn svg {
-    fill: var(--text-color);
-    stroke: currentColor;
-    transition: fill var(--transition), stroke var(--transition);
+    /* Задаем базовые цвета для иконок из переменных проекта */
+    fill: var(--black-color);
+    stroke: var(--black-color);
 }
 
+/* В обычном состоянии полное сердце внутри скрыто */
+.heartFilled {
+    display: none;
+}
+
+.heartOutline {
+    display: block;
+}
+
+/* 🟢 Эффект Ховера: плавно увеличиваем и подменяем контур на полное сердце */
 .favoriteBtn:hover {
     transform: scale(1.1);
 }
 
-/* 🟢 Активное состояние: перекрашиваем и контур, и заливку в наш зеленый */
-.favoriteBtn.isFavoriteActive {
+.favoriteBtn:not(.isFavoriteActive):hover svg {
     fill: var(--accent-color);
+    stroke: var(--accent-color);
 }
 
+.favoriteBtn:not(.isFavoriteActive):hover .heartOutline {
+    display: none;
+}
+
+.favoriteBtn:not(.isFavoriteActive):hover .heartFilled {
+    display: block;
+}
+
+/* 🟢 Активное состояние: когда карточка уже в избранном */
 .favoriteBtn.isFavoriteActive svg {
     fill: var(--accent-color);
     stroke: var(--accent-color);

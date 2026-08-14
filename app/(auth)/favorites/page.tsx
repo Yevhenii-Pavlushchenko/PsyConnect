@@ -13,10 +13,9 @@ import css from "./page.module.css";
 
 export default function FavoritesPage() {
   const router = useRouter();
-  const { isLoggedIn, isHydrated } = useAuthStore(); // 🟢 Забираем флаг готовности стора
+  const { isLoggedIn, isHydrated } = useAuthStore();
 
   useEffect(() => {
-    // 🟢 Делаем редирект ТОЛЬКО после того, как стор проверил localStorage
     if (isHydrated && !isLoggedIn) {
       router.push("/");
     }
@@ -28,10 +27,9 @@ export default function FavoritesPage() {
       const response = await api.get("/api/favorites");
       return response.data;
     },
-    enabled: isHydrated && isLoggedIn, // 🟢 Делаем запрос только если сессия подтверждена
+    enabled: isHydrated && isLoggedIn,
   });
 
-  // Пока стор считывает localStorage или если пользователя перенаправляет — показываем заглушку
   if (!isHydrated || !isLoggedIn) {
     return <div className={css.loader}>Verifying session...</div>;
   }
@@ -48,12 +46,13 @@ export default function FavoritesPage() {
 
   return (
     <div className={css.container}>
-      <FavoritesPageTitle />
-      
       {favorites.length === 0 ? (
         <EmptyStateFavorite />
       ) : (
-        <FavoritesList initialFavorites={favorites} />
+        <>
+          <FavoritesPageTitle />
+          <FavoritesList initialFavorites={favorites} />
+        </>
       )}
     </div>
   );
