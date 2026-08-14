@@ -1,0 +1,19 @@
+.header {
+    margin-bottom: 32px;
+}
+
+.title {
+    font-family: var(--font-manrope), sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--black-color);
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-family: var(--font-manrope), sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-color);
+}

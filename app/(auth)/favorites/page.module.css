@@ -1,0 +1,21 @@
+.container {
+    padding: 40px 128px;
+    background-color: var(--background-color);
+    min-height: calc(100vh - 100px);
+    /* Вычитаем условную высоту Header/Footer */
+}
+
+.loader,
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    font-family: var(--font-manrope), sans-serif;
+    color: var(--grey-color);
+    font-size: 18px;
+}
+
+.error {
+    color: var(--error-color);
+}
